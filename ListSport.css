@@ -1,0 +1,145 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045694;
+    padding: 10px 40px;
+    height: 70px;
+}
+
+.logo_web img {
+    height: 120px;
+}
+
+.boton_header input[type="button"] {
+    background-color: white;
+    color: #045694;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.titulo_todos_deportes {
+    max-width: 800px;
+    margin: 40px auto 10px auto;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.recuadro_futbol {
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recuadro_baloncesto {
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recuadro_tenis {
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recuadro_paddle {
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recuadro_golf {
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+[class^="recuadro_"] img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+[class^="recuadro_"] h4 {
+    margin: 20px 20px 10px 20px;
+    font-size: 20px;
+}
+
+[class^="recuadro_"] input[type="button"] {
+    background-color: #69B3C5;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin: 0 20px 15px 20px;
+    cursor: pointer;
+    width: fit-content;
+    font-weight: bold;
+}
+
+[class^="recuadro_"] a {
+    text-decoration: none;
+    color: #666;
+    margin: 0 20px 20px 20px;
+    font-size: 14px;
+}
+
+.footer {
+    background-color: #045694;
+    padding: 40px;
+    border-top: 1px solid #ddd;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+}
+
+.footer h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.footer p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: white;
+    cursor: pointer;
+}

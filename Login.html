@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Login.css" />
+    <title>Iniciar sesión</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo_web">
+        <img src="Imagenes/Logo1.png" />
+      </div>
+      <div class="boton_header">
+        <h4>
+          <a href="SingUp.html"><input type="button" value="Registrarse" /></a>
+        </h4>
+      </div>
+    </div>
+
+    <div class="fondo">
+      <div class="recuadro_inicio_sesion">
+        <div class="titulo_inicio_sesion">
+          <h2>Iniciar sesión</h2>
+        </div>
+        <div class="form">
+          <form action="login.php" method="post">
+            <label for="">Usuario</label>
+            <input type="text" name="usuario" id="usuario" minlength="5" />
+            <br />
+            <br />
+            <label for="">Contraseña</label>
+            <input
+              type="text"
+              name="contraseña"
+              id="contraseña"
+              minlength="5"
+              maxlength="10"
+            />
+            <br />
+            <br />
+            <a href="HomeMenu.html"><input type="submit" value="Entrar" /></a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
