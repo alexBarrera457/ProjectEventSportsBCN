@@ -109,26 +109,32 @@ body, html {
     cursor: pointer;
 }
 
-.footer {
+.foot {
     background-color: #045694;
     padding: 40px;
-    border-top: 1px solid #ddd;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    text-align: left;
+    color: white; 
+    justify-items: center; 
+    align-items: start;
+    text-align: center;
 }
 
-.footer h3 {
-    margin-top: 0;
-    font-size: 18px;
+.foot a {
+    color: white;           
+    text-decoration: none;
 }
 
-.footer p {
-    font-size: 14px;
-    margin: 5px 0;
-    color: white;
-    cursor: pointer;
+.foot div {
+    line-height: 2.0;
 }
+
+.foot strong {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
 
 
