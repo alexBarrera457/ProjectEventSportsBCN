@@ -65,6 +65,7 @@ body, html {
 .title1 h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .buttons_lab1 {
@@ -117,6 +118,7 @@ body, html {
 .football_label h4, .basketball_label h4 {
     font-size: 1.8rem;
     margin-bottom: 15px;
+    text-decoration: none;
 }
 
 .football_label img, .basketball_label img {
