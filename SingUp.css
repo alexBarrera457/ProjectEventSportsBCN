@@ -76,7 +76,7 @@ body, html {
     font-weight: bold;
 }
 
-.botones_form input[type="submit"] {
+.botones_form input[type="button"] {
     background-color: #045694;
     color: white;
     border: none;

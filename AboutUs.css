@@ -1,0 +1,108 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header_web {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045694;
+    padding: 10px 40px;
+    height: 70px;
+}
+
+.logo img {
+    height: 120px; 
+}
+
+.but input[type="button"] {
+    background-color: white;
+    color: #045694;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.fondo {
+    background-image: url('Imagenes/Img_fondo_login_registro.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+}
+
+
+.recuadro {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.title1 h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.title1 h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #3498db;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.text {
+    font-size: 1.1rem;
+    text-align: justify;
+    color: #555;
+    white-space: pre-line;
+}
+
+.foot {
+    background-color: #045694;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    color: white; 
+    justify-items: center; 
+    align-items: start;
+    text-align: center;
+}
+
+.foot a {
+    color: white;           
+    text-decoration: none;
+}
+
+.foot div {
+    line-height: 2.0;
+}
+
+.foot strong {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
