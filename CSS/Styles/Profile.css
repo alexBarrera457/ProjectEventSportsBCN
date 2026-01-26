@@ -29,7 +29,7 @@ body, html {
 }
 
 .fondo {
-    background-image: url('Imagenes/Img_fondo_login_registro.jpg'); 
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
