@@ -1,0 +1,98 @@
+/* Alex */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header_web {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045694;
+    padding: 10px 40px;
+    height: 70px;
+}
+
+.logo img {
+    height: 120px; 
+}
+
+.login_but input[type="button"] {
+    background-color: white;
+    color: #045694;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.fondo {
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recuadro_registro {
+    background-color: white; 
+    padding: 60px 40px;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+}
+
+.titulo_registro h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.botones_form form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.botones_form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.botones_form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px; 
+    background-color: #fafafa;
+    font-weight: bold;
+}
+
+.botones_form input[type="button"] {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 150px; 
+    margin: 20px auto 0; 
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+}
+
+
+.botones_form a, .boton_header a {
+    text-decoration: none;
+}
