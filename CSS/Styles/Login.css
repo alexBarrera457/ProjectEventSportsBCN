@@ -94,6 +94,15 @@ body, html {
     display: block;
 }
 
+.ask_forgotten_password {
+    text-align: center;
+    font-size: 14px;
+}
+
+.forgot_password_button {
+    
+}
+
 
 .form a, .boton_header a {
     text-decoration: none;
