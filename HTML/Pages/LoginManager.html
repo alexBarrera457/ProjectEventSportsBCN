@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../CSS/Styles/ForgottenPassword.css" />
+    <link rel="stylesheet" href="../../CSS/Global/global.css" />
+    <title>Iniciar sesión como manager</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo_web">
+        <a href="../Pages/HomeMenu.html"
+          ><img src="../../Assets/Logo1.png"
+        /></a>
+      </div>
+      <div class="boton_header">
+        <h4>
+          <a href="../../HTML/Pages/SingUpManager.html"
+            ><input type="button" value="Registrarse"
+          /></a>
+        </h4>
+      </div>
+    </div>
+
+    <div class="fondo">
+      <div class="recuadro_inicio_sesion">
+        <div class="titulo_inicio_sesion">
+          <h2>Iniciar sesión como mánager</h2>
+        </div>
+        <div class="form">
+          <form action="../../HTML/Pages/LoginManager.html" method="post">
+            <label for="">Usuario</label>
+            <input type="text" name="usuario" id="usuario" minlength="5" />
+            <br />
+            <br />
+            <label for="">Contraseña</label>
+            <input
+              type="text"
+              name="contraseña"
+              id="contraseña"
+              minlength="5"
+              maxlength="10"
+            />
+            <br />
+            <br />
+            <a href="../../HTML/Pages/HomeMenu.html"
+              ><input type="button" value="Entrar"
+            /></a>
+            <a href="../Pages/ForgottenPassword.html"><input type="button" value="Cambiar Contraseña"></a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
