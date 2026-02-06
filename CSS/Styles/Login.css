@@ -80,7 +80,7 @@ body, html {
     background-color: #fafafa;
 }
 
-.form input[type="button"] {
+.enter_button input {
     background-color: #045694;
     color: white;
     border: none;
@@ -99,8 +99,17 @@ body, html {
     font-size: 14px;
 }
 
-.forgot_password_button {
-    
+.forgot_password_button input {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 20px auto 0; 
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
 }
 
 
