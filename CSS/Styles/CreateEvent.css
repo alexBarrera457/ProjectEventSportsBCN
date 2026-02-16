@@ -1,0 +1,102 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header_web {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045694;
+    padding: 10px 40px;
+    height: 70px;
+}
+
+.logo img {
+    height: 120px; 
+}
+
+.profile_but input[type="button"] {
+    background-color: white;
+    color: #045694;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu_sport_events {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.titleCreateEvent {
+    grid-column: 1 / -1;
+}
+
+.titleCreateEvent h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.football1, .basketball2, .tennis3, .paddle4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.football1, .basketball2, .tennis3, .paddle4  a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu_sport_events img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
+
+.menu_sport_events h4 {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.foot {
+    background-color: #045694;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    color: white; 
+    justify-items: center; 
+    align-items: start;
+    text-align: center;
+}
+
+.foot a {
+    color: white;           
+    text-decoration: none;
+}
+
+.foot div {
+    line-height: 2.0;
+}
+
+.foot strong {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
