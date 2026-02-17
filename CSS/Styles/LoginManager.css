@@ -1,9 +1,7 @@
-/* Alex */
-
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -36,27 +34,30 @@ body, html {
     background-repeat: no-repeat; 
     background-position: center; 
     background-attachment: fixed; 
-    min-height: 600px;
+    min-height: calc(100vh - 90px);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .recuadro_inicio_sesion {
     background-color: white; 
-    padding: 60px 40px;
+    padding: 25px 30px;
     border-radius: 15px;
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     box-sizing: border-box;
 }
 
 .titulo_inicio_sesion h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 24px;
+    margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .form form {
@@ -67,52 +68,74 @@ body, html {
 
 .form label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     display: block;
+    font-size: 14px;
 }
 
-.form input[type="text"] {
+.form input[type="text"],
+.form input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 5px; 
+    border-radius: 6px;
+    margin-bottom: 12px; 
     background-color: #fafafa;
+    box-sizing: border-box;
 }
 
-.enter_button_man input {
+.enter_button_man input,
+.forgot_password_button_man input {
     background-color: #045694;
     color: white;
     border: none;
-    padding: 12px;
-    width: 150px; 
-    margin: 20px auto 0; 
+    padding: 10px;
+    width: 160px; 
+    margin: 10px auto 0; 
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     display: block;
+    transition: background 0.3s;
+}
+
+.enter_button_man input:hover,
+.forgot_password_button_man input:hover {
+    background-color: #033d6a;
 }
 
 .ask_forgotten_password_man {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
+    margin-top: 15px;
 }
-
-.forgot_password_button_man input{
-    background-color: #045694;
-    color: white;
-    border: none;
-    padding: 12px;
-    margin: 20px auto 0; 
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-}
-
 
 .form a, .boton_header a {
     text-decoration: none;
+}
+
+/* movil */
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 10px 20px;
+    }
+    
+    .logo_web img {
+        height: 80px; 
+    }
+}
+
+/* tablet */
+@media screen and (max-width: 480px) {
+    .recuadro_inicio_sesion {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    .enter_button_man input,
+    .forgot_password_button_man input {
+        width: 100%;
+        max-width: none;
+    }
 }

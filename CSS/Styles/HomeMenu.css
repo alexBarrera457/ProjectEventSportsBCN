@@ -1,9 +1,7 @@
-/* Sergi */
-
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -56,7 +54,7 @@ body, html {
 
 .title1 h1 {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
     text-decoration: none;
 }
 
@@ -73,15 +71,19 @@ body, html {
     color: #045694;
     font-weight: bold;
     cursor: pointer;
+    transition: background 0.3s;
+}
+
+.buttons_lab1 input[type="button"]:hover {
+    background-color: #f0f0f0;
 }
 
 .lab2 {
     background-color: #045694;
     color: white;
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 20px;
     text-decoration: none;
-    
 }
 
 .buttons_lab2 input[type="button"] {
@@ -93,13 +95,19 @@ body, html {
     font-weight: bold;
     margin: 20px 0;
     cursor: pointer;
+    transition: background 0.3s;
+}
+
+.buttons_lab2 input[type="button"]:hover {
+    background-color: #f0f0f0;
 }
 
 .title3 {
     background-color: white;
     color: black;
-    padding: 40px 0 10px 0;
+    padding: 40px 20px 10px 20px;
     font-size: 1.5rem;
+    text-align: center;
     text-decoration: none;
 }
 
@@ -127,7 +135,7 @@ body, html {
 
 .foot {
     background-color: #045694;
-    padding: 40px;
+    padding: 40px 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -142,6 +150,10 @@ body, html {
     text-decoration: none;
 }
 
+.foot a:hover {
+    text-decoration: underline;
+}
+
 .foot div {
     line-height: 2.0;
 }
@@ -152,4 +164,45 @@ body, html {
     font-size: 1.1em;
 }
 
+/* tablet */
+@media screen and (max-width: 768px) {
+    .header_web {
+        padding: 10px 20px;
+    }
 
+    .logo img {
+        height: 80px;
+    }
+
+    .title1 h1 {
+        font-size: 2rem;
+    }
+
+    .foot {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .football_label, .basketball_label {
+        padding: 20px 5%;
+    }
+}
+
+/* movil */
+@media screen and (max-width: 480px) {
+    .buttons_lab1 {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .buttons_lab1 input[type="button"] {
+        width: 100%;
+    }
+
+    .lab1 {
+        height: 400px;
+    }
+}

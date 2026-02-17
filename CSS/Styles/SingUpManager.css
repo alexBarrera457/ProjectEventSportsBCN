@@ -1,9 +1,7 @@
-/* Alex */
-
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -35,25 +33,31 @@ body, html {
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
-    background-attachment: fixed; 
-    height: 800px;
+    background-attachment: fixed;
+    min-height: calc(100vh - 90px); 
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .recuadro_registro {
     background-color: white; 
-    padding: 60px 40px;
+    padding: 25px 30px; 
     border-radius: 15px;
-    width: 400px;
+    width: 100%;
+    max-width: 340px; 
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-sizing: border-box; 
 }
 
 .titulo_registro h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 24px;
+    margin-bottom: 20px; 
+    margin-top: 0;
 }
 
 .botones_form form {
@@ -64,35 +68,76 @@ body, html {
 
 .botones_form label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     display: block;
+    font-size: 14px;
 }
 
-.botones_form input[type="text"] {
+.botones_form input[type="text"],
+.botones_form input[type="password"],
+.botones_form input[type="email"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 5px; 
+    border-radius: 6px;
+    margin-bottom: 12px; 
     background-color: #fafafa;
     font-weight: bold;
+    box-sizing: border-box; 
 }
 
 .botones_form input[type="button"] {
     background-color: #045694;
     color: white;
     border: none;
-    padding: 12px;
-    width: 150px; 
-    margin: 20px auto 0; 
+    padding: 10px;
+    width: 140px; 
+    margin: 10px auto 0; 
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     display: block;
+    transition: background 0.3s;
 }
 
+.botones_form input[type="button"]:hover {
+    background-color: #033d6a;
+}
 
 .botones_form a, .boton_header a {
     text-decoration: none;
+}
+
+/* tablet */
+@media screen and (max-width: 768px) {
+    .header_web {
+        padding: 10px 20px;
+    }
+    
+    .logo img {
+        height: 80px; 
+    }
+
+    .recuadro_registro {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* movil */
+@media screen and (max-width: 480px) {
+    .fondo {
+        background-attachment: scroll; 
+    }
+
+    .recuadro_registro {
+        width: 100%;
+        max-width: none;
+        border-radius: 10px;
+    }
+
+    .botones_form input[type="button"] {
+        width: 100%; 
+    }
 }

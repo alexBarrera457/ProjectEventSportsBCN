@@ -28,7 +28,7 @@ body, html {
     font-weight: bold;
 }
 
-.menu_sports {
+.menu_sport_events {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
@@ -39,13 +39,14 @@ body, html {
     box-sizing: border-box;
 }
 
-.titleFollowedSports {
+.titleMyEvents {
     grid-column: 1 / -1;
+    text-align: left;
 }
 
-.titleFollowedSports h1 {
+.titleMyEvents h1 {
     font-size: 2.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
     color: #333;
 }
@@ -60,12 +61,12 @@ body, html {
     transform: translateY(-5px);
 }
 
-.event1 a, .event2 a, .event3 a, .event4 a {
+.football1 a, .basketball2 a, .tennis3 a, .paddle4 a {
     text-decoration: none;
     color: black;
 }
 
-.menu_sports img {
+.menu_sport_events img {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
@@ -74,7 +75,7 @@ body, html {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.menu_sports h4 {
+.menu_sport_events h4 {
     margin-top: 15px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -100,6 +101,10 @@ body, html {
     text-decoration: none;
 }
 
+.foot a:hover {
+    text-decoration: underline;
+}
+
 .foot div {
     line-height: 2.0;
 }
@@ -120,12 +125,12 @@ body, html {
         height: 80px;
     }
 
-    .menu_sports {
+    .menu_sport_events {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    .titleFollowedSports h1 {
+    .titleMyEvents h1 {
         font-size: 2rem;
     }
 
@@ -137,7 +142,7 @@ body, html {
 
 /* movil */
 @media screen and (max-width: 480px) {
-    .menu_sports h4 {
+    .menu_sport_events h4 {
         font-size: 1rem;
     }
 }

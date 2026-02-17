@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -31,11 +31,12 @@ body, html {
 .menu_sport_events {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    padding: 40px 20px;
     font-family: 'Arial', sans-serif;
     max-width: 1000px;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .titleCreateEvent {
@@ -43,17 +44,23 @@ body, html {
 }
 
 .titleCreateEvent h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 10px;
     font-weight: bold;
+    color: #333;
 }
 
 .football1, .basketball2, .tennis3, .paddle4 {
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
 }
 
-.football1, .basketball2, .tennis3, .paddle4  a {
+.football1:hover, .basketball2:hover, .tennis3:hover, .paddle4:hover {
+    transform: translateY(-5px);
+}
+
+.football1 a, .basketball2 a, .tennis3 a, .paddle4 a {
     text-decoration: none;
     color: black;
 }
@@ -64,19 +71,21 @@ body, html {
     object-fit: cover;
     border-radius: 15px;
     display: block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .menu_sport_events h4 {
-    margin-top: 10px;
-    font-size: 0.9rem;
+    margin-top: 15px;
+    font-size: 1.1rem;
     font-weight: 600;
     display: flex;
     justify-content: space-between; 
+    color: #333;
 }
 
 .foot {
     background-color: #045694;
-    padding: 40px;
+    padding: 40px 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -99,4 +108,36 @@ body, html {
     display: inline-block;
     margin-bottom: 10px;
     font-size: 1.1em;
+}
+
+/* tablet */
+@media screen and (max-width: 768px) {
+    .header_web {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .menu_sport_events {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .titleCreateEvent h1 {
+        font-size: 2rem;
+    }
+
+    .foot {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* movil */
+@media screen and (max-width: 480px) {
+    .menu_sport_events h4 {
+        font-size: 1rem;
+    }
 }
