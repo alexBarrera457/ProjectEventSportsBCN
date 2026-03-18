@@ -1,3 +1,7 @@
+<?php
+session_start(); // Start the session
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,28 +30,26 @@
         <div class="titulo_inicio_sesion">
           <h2>Iniciar sesión</h2>
         </div>
+        
         <div class="form">
-          <form action="../../HTML/Pages/Login.html" method="post">
-            <label for="">Usuario</label>
-            <input type="text" name="usuario" id="usuario" minlength="5" />
-            <br />
-            <br />
-            <label for="">Contraseña</label>
-            <input
-              type="text"
-              name="contraseña"
-              id="contraseña"
-              minlength="5"
-              maxlength="10"
-            />
+          <form action="../../HTML/Pages/Login.php" method="post">
 
-            <br />
-            <br />
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" id="usuario"/>
+
+            <br /><br />
+
+            <label for="contraseña">Contraseña</label>
+            <input type="text" name="contraseña" id="contraseña"/>
+
+            <br /><br />
+
             <div class="enter_button">
-              <a href="../../HTML/Pages/HomeMenu.html"><input type="button" value="Entrar"/></a>
+             <input type="submit" value="Entrar"/>
             </div>
             
             <br><br>
+            
             <div class="ask_forgotten_password">
               ¿Has olvidado tu contaseña?
             </div>
@@ -55,6 +57,7 @@
             <div class="forgot_password_button">
               <a href="../Pages/ForgottenPassword.html"><input type="button" value="Cambiar Contraseña"></a>
             </div>
+
           </form>
         </div>
       </div>
