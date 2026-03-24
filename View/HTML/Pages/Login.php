@@ -1,5 +1,29 @@
 <?php
 session_start(); // Start the session
+
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../../PHP/Controllers/UserController.php';
+    
+    $username = trim($_POST['usuario'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if (empty($username) || empty($password)) {
+        $error = "Por favor, rellena todos los campos.";
+    } else {
+        $controller = new UserController();
+        $ok = $controller->login($username, $password);
+
+        if ($ok) {
+            header('Location: Dashboard.php');
+            exit;
+        } else {
+            $error = "Usuario o contraseña incorrectos.";
+        }
+    }
+}
+
 ?>
 
 <!doctype html>

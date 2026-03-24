@@ -1,89 +1,94 @@
 <?php
 session_start();
-If($_SERVER['REQUEST_METHOD'] == "POST"){
-    $user = new userControler();
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $user = new UserController();
     //vemos que boton es el que presionar el usuario
-    if(isset($_POST["login"])){
+    if (isset($_POST["login"])) {
         echo "<p>login button clicked.</p>";
         $user->login();
     }
-    if(isset($_POST["logout"])){
+    if (isset($_POST["logout"])) {
         echo "<p>logout button clicked.</p>";
         $user->logout();
     }
-    if(isset($_POST["register"])){
+    if (isset($_POST["register"])) {
         echo "<p>register button clicked.</p>";
         $user->register();
     }
-
 }
 
-
-
-//definimos clase
-class userControler
+class UserController
 {
-    //definimos atributos
 
     private $conn;
+
     public function __construct()
     {
-
+        $host = "localhost";
         $usuario = "root";
         $password = "";
+        $base_datos = "eventsportsbcn";
 
-        $host = "localhost";
-        $base_datos = "mi_base_datos";
-        //conexion creada
         $this->conn = new mysqli($host, $usuario, $password, $base_datos);
 
-
-        //verificamos si la sesion es correcta
-        // if($this->conn -> conect_error){
-        //     die("Error de conexion: " . $this->conn->connect_error);
-        // }
-        // echo "Conexion realizada";
-
-        //charset establecido
-        //$conexion -> set_charset("utf8mb4");
-        $this->conn->set_charset("utf8mb4");
-
-        //finalizar conexion
-
-        $this->conn->close();
-    }
-
-    //metodos
-    public function login() {
-        $sql = "Select usuario, password";
-        $stmt = $this->conn->prepare($sql);
-        $usuario = "root";
-        $password = "";
-        $stmt ->bind_param("s",$usuario,"i",$password);
-
-        //ejecutar consulta
-        $stmt ->execute();
-
-        //resultados
-        $resultado = $stmt->get_result();
-        while($fila = $resultado ->fetch_assoc()){
-            echo"Usuario: " . $fila['usuario'] . 
+        if ($this->conn->connect_error) {
+            die("Error de conexión: " . $this->conn->connect_error);
         }
 
-
-
+        $this->conn->set_charset("utf8mb4");
     }
 
+    public function login()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $user = $_POST["user"];
+        $password = $_POST["password"];
+        echo __LINE__ . $user . $password;
 
+        $sql = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+        echo __LINE__;
+
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            echo __LINE__;
+            $user = $result->fetch_assoc();
+            var_dump($user);
+            
+            if ($password == $user['password_hash']) {
+                echo __LINE__;
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['nombre_usuario'];
+                // return true;
+                // header profile.php
+                header('Location: ../View/HTML/Pages/Profile.php');
+            }
+        }else{
+            // error in session
+            // header login.php
+        }
+
+        return false;
+    }
 
     public function logout() {}
 
     public function register() {}
 
-
-
-
-
-    //conexion con base de datos
-
+    public function __destruct()
+    {
+        if ($this->conn) {
+            $this->conn->close();
+        }
+    }
 }
