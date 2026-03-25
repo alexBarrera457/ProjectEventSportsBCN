@@ -21,7 +21,7 @@ $error = "";
       </div>
       <div class="boton_header">
         <h4>
-          <a href="../../HTML/Pages/SingUpManager.html"
+          <a href="../../HTML/Pages/SingUpManager.php"
             ><input type="button" value="Registrarse"/></a>
         </h4>
       </div>
@@ -57,7 +57,7 @@ $error = "";
             </div>
             
             <div class="forgot_password_button_man">
-               <a href="../Pages/ForgottenPassword.html"><input type="button" value="Cambiar Contraseña"></a>
+               <a href="../Pages/ForgottenPassword.php"><input type="button" value="Cambiar Contraseña"></a>
             </div>
             
           </form>

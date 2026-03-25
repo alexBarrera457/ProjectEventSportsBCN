@@ -56,7 +56,7 @@ $error = "";
             </div>
 
             <div class="forgot_password_button">
-              <a href="../Pages/ForgottenPassword.html"><input type="button" value="Cambiar Contraseña"></a>
+              <a href="../Pages/ForgottenPassword.php"><input type="button" value="Cambiar Contraseña"></a>
             </div>
 
           </form>

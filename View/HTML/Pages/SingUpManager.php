@@ -1,21 +1,8 @@
 <?php
 session_start();
 
-/*
-if(isset($_POST['Name'])) {
-    $_SESSION['name'] = $_POST['Name'];
-    $_SESSION['surname'] = $_POST['Surname'];
-    $_SESSION['email'] = $_POST['Email'];
-    $_SESSION['entidad'] = $_POST['Entidad'];
-    $_SESSION['telefono'] = $_POST['Telefono'];
-    $_SESSION['passwd'] = $_POST['Passwd'];
-    $_SESSION['repasswd'] = $_POST['Repasswd'];
-
-    register();
-    header("Location: HomeMenuManager.php");
-
-} 
-    //*/
+$error = $_SESSION['register_error'] ?? '';
+unset($_SESSION['register_error']);
 
 ?>
 
@@ -26,13 +13,7 @@ if(isset($_POST['Name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/Styles/SingUp.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css">
-    <title>Registrarse como manager</title>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Registro Manager</title>
 </head>
 <body>
  
@@ -52,16 +33,25 @@ if(isset($_POST['Name'])) {
         <div class="titulo_registro">
             <h1>Registrarse como manager</h1>
         </div>
+
+        <?php if (!empty($error)): ?>                 
+            <div class="error_msg">                     
+                <p><?= htmlspecialchars($error) ?></p>                 
+            </div>             
+        <?php endif; ?>
+
         <div class="botones_form">
-            <form method="post">
+            <form action="/../../Controler/userControler.php" method="post">
                 Nombre <br><input type="text" name="Name" required><br>
                 Apellidos <br><input type="text" name="Surname" required><br>
+                Nombre de usuario <br><input type="text" name="User" required><br>
                 Correo electrónico <br><input type="email" name="Email" required><br>
                 Entidad <br><input type="text" name="Entidad" required><br>
                 Teléfono <br><input type="number" name="Telefono" required><br>
                 Contraseña <br><input type="text" name="Passwd" required><br>
                 Repetir contaseña <br><input type="text" name="Reppasswd" required><br>
-                <br><a href="../../HTML/Pages/HomeMenuManager.php"><input type="button" value="Registrarse"></a>
+                <input type="hidden" name="rol" value="manager">
+                <br><input type="button" value="Registrarse"></a>
                 
             </div>              
             </form>
