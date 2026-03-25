@@ -1,17 +1,36 @@
 <?php
+session_start();
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $user = new UserController();
+    //vemos que boton es el que presionar el usuario
+    if (isset($_POST["login"])) {
+        echo "<p>login button clicked.</p>";
+        $user->login();
+    }
+    if (isset($_POST["logout"])) {
+        echo "<p>logout button clicked.</p>";
+        $user->logout();
+    }
+    if (isset($_POST["register"])) {
+        echo "<p>register button clicked.</p>";
+        $user->register();
+    }
+}
 
-class UserController {
+class UserController
+{
 
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $host = "localhost";
         $usuario = "root";
         $password = "";
-        $base_datos = "mi_base_datos";
+        $base_datos = "eventsportsbcn";
 
         $this->conn = new mysqli($host, $usuario, $password, $base_datos);
-        
+
         if ($this->conn->connect_error) {
             die("Error de conexión: " . $this->conn->connect_error);
         }
@@ -19,10 +38,14 @@ class UserController {
         $this->conn->set_charset("utf8mb4");
     }
 
-    public function login($username, $password) {
+    public function login()
+    {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        $user = $_POST["user"];
+        $password = $_POST["password"];
+        echo __LINE__ . $user . $password;
 
         $sql = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
         $stmt = $this->conn->prepare($sql);
@@ -30,38 +53,42 @@ class UserController {
         if (!$stmt) {
             return false;
         }
+        echo __LINE__;
 
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $user);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows === 1) {
+            echo __LINE__;
             $user = $result->fetch_assoc();
+            var_dump($user);
             
-            if (password_verify($password, $user['password_hash'])) {
+            if ($password == $user['password_hash']) {
+                echo __LINE__;
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['nombre_usuario'];
-                return true;
+                // return true;
+                // header profile.php
+                header('Location: ../View/HTML/Pages/Profile.php');
             }
+        }else{
+            // error in session
+            // header login.php
         }
-        
+
         return false;
     }
 
-    public function logout() {
+    public function logout() {}
 
-    }
+    public function register() {}
 
-    public function register($data) {
-
-    }
-
-    public function __destruct() {
+    public function __destruct()
+    {
         if ($this->conn) {
             $this->conn->close();
         }
     }
 }
-
-?>

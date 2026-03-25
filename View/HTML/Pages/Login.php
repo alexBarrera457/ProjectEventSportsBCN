@@ -2,28 +2,6 @@
 session_start(); // Start the session
 
 $error = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once '../../PHP/Controllers/UserController.php';
-    
-    $username = trim($_POST['usuario'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-
-    if (empty($username) || empty($password)) {
-        $error = "Por favor, rellena todos los campos.";
-    } else {
-        $controller = new UserController();
-        $ok = $controller->login($username, $password);
-
-        if ($ok) {
-            header('Location: Dashboard.php');
-            exit;
-        } else {
-            $error = "Usuario o contraseña incorrectos.";
-        }
-    }
-}
-
 ?>
 
 <!doctype html>
@@ -56,20 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         
         <div class="form">
-          <form action="../../HTML/Pages/Login.php" method="post">
+          <form action="../../../Controler/userControler.php" method="post">
 
             <label for="usuario">Usuario</label>
-            <input type="text" name="usuario" id="usuario"/>
+            <input type="text" name="user" id="usuario"/>
 
             <br /><br />
 
             <label for="contraseña">Contraseña</label>
-            <input type="text" name="contraseña" id="contraseña"/>
+            <input type="text" name="password" id="contraseña"/>
 
             <br /><br />
 
             <div class="enter_button">
-             <input type="submit" value="Entrar"/>
+             <input type="submit" value="Entrar" name="login"/>
             </div>
             
             <br><br>
