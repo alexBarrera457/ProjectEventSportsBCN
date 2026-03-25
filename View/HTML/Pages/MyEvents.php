@@ -11,10 +11,10 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../../HTML/Pages/HomeMenuManager.html"><img src="../../Assets/Logo1.png"></a>
+                <a href="../../HTML/Pages/HomeMenuManager.php"><img src="../../Assets/Logo1.png"></a>
             </div>
             <div class="profile_but">
-                <a href="../../HTML/Pages/Profile.html"><input type="button" value="Mi cuenta"></a>
+                <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        
     </header>
@@ -55,7 +55,7 @@
             <strong>Nosotros</strong><br>
             <a href="">Contacto</a><br>
             <a href="">Centro de Ayuda</a><br>
-            <a href="../Pages/AboutUs.html">Sobre nosotros</a>        
+            <a href="../Pages/AboutUs.php">Sobre nosotros</a>        
         </div>
         
         <div class="legal">

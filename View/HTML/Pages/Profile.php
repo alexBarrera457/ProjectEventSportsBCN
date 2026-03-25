@@ -37,7 +37,7 @@
         </div>
 
         <div class="datos"></div>
-        <form action="../Pages/Profile.html" method="post">
+        <form action="../Pages/Profile.php" method="post">
           <label for="">Nombre</label>
           <input type="text" name="nombre" id="nombre" minlength="15" /> <br />
           <br />
@@ -61,10 +61,10 @@
         </form>
 
         <div class="botones">
-          <a href="../Pages/SignedEvents.html"><input type="button" value="Eventos apuntados" /></a>
-          <a href="../Pages/SavedEvents.html"><input type="button" value="Eventos guardados" /></a>
-          <a href="../Pages/FollowedSports.html"><input type="button" value="Deportes seguidos" /></a>
-          <a href="../Pages/ForgottenPassword.html"><input type="button" value="Cambiar contraseña" /></a>
+          <a href="../Pages/SignedEvents.php"><input type="button" value="Eventos apuntados" /></a>
+          <a href="../Pages/SavedEvents.php"><input type="button" value="Eventos guardados" /></a>
+          <a href="../Pages/FollowedSports.php"><input type="button" value="Deportes seguidos" /></a>
+          <a href="../Pages/ForgottenPassword.php"><input type="button" value="Cambiar contraseña" /></a>
         </div>
       </div>
     </div>

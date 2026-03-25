@@ -10,12 +10,12 @@
 <body>
     <div class="header">
       <div class="logo_web">
-        <a href="../Pages/HomeMenu.html"><img src="../../Assets/Logo1.png" /></a>
+        <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" /></a>
       </div>
       <div class="boton_header">
         <h4>
-          <a href="../Pages/Login.html"><input type="button" value="Cerrar sesión" /></a>
-          <a href="../Pages/Profile.html"><input type="button" value="Mi cuenta" /></a>
+          <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión" /></a>
+          <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta" /></a>
         </h4>
       </div>
     </div>
@@ -27,28 +27,28 @@
         <img src="../../Assets/Futbol.jpeg">
         <h4>Fútbol</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
-        <a href="Football.html">Ir al deporte ⮕</a>
+        <a href="Football.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_baloncesto">
         <img src="../../Assets/Baloncesto.jpeg">
         <h4>Baloncesto</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
-        <a href="Basketball.html">Ir al deporte ⮕</a>
+        <a href="Basketball.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_tenis">
         <img src="../../Assets/Tenis.jpeg">
         <h4>Tenis</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
-        <a href="Tennis.html">Ir al deporte ⮕</a>
+        <a href="Tennis.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_paddle">
       <img src="../../Assets/Paddle.jpeg">
         <h4>Paddle</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
-        <a href="Paddle.html">Ir al deporte ⮕</a>
+        <a href="Paddle.php">Ir al deporte ⮕</a>
         
     </div>
 
@@ -56,7 +56,7 @@
         <img src="../../Assets/Golf.jpeg">
         <h4>Golf</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
-        <a href="Golf.html">Ir al deporte ⮕</a>
+        <a href="Golf.php">Ir al deporte ⮕</a>
     </div>
 
     <footer class="foot">
@@ -64,7 +64,7 @@
             <strong>Nosotros</strong><br>
             <a href="">Contacto</a><br>
             <a href="">Centro de Ayuda</a><br>
-            <a href="../Pages/AboutUs.html">Sobre nosotros</a>        
+            <a href="../Pages/AboutUs.php">Sobre nosotros</a>        
         </div>
         
         <div class="legal">
