@@ -15,8 +15,8 @@
                 <img src="../../Assets/Logo1.png">
             </div>
             <div class="but">
-                <a href="../../HTML/Pages/Login.html"><input type="button" value="Cerrar sesión"></a>
-                <a href="../../HTML/Pages/Profile.html"><input type="button" value="Mi cuenta"></a>
+                <a href="../../HTML/Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
+                <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        
     </header>
@@ -26,8 +26,8 @@
             <h1>Publica tu evento</h1>
         </div>
         <div class="buttons_lab1">
-            <a href="CreateEvent.html"><input type="button" value="Crear evento"></a>
-            <a href="MyEvents.html"><input type="button" value="Mis eventos"></a>
+            <a href="CreateEvent.php"><input type="button" value="Crear evento"></a>
+            <a href="MyEvents.php"><input type="button" value="Mis eventos"></a>
  
             <div class="img1">
                 <img src="../../Assets/foto_home.jpeg">
@@ -40,19 +40,19 @@
             <h3>Accede a todos nuestros deportes</h3>
         </div>
         <div class="buttons_lab2">
-            <a href="../../HTML/Pages/ListSport.html"><input type="button" value="Todos los deportes"></a>
+            <a href="../../HTML/Pages/ListSport.php"><input type="button" value="Todos los deportes"></a>
         </div>
         <div class="title3">
             <h3>Deportes destacados</h3>
         </div>
  
         <div class="football_label">
-            <a href="../../HTML/Pages/Football.html"><h4>Fútbol</h4></a>
+            <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4></a>
             <img src="../../Assets/Futbol.jpeg">          
         </div>
  
         <div class="basketball_label">
-            <a href="Basketball.html"><h4>Baloncesto</h4></a>
+            <a href="Basketball.php"><h4>Baloncesto</h4></a>
             <img src="../../Assets/Baloncesto.jpeg">
         </div>
  
@@ -63,7 +63,7 @@
             <strong>Nosotros</strong><br>
             <a href="">Contacto</a><br>
             <a href="">Centro de Ayuda</a><br>
-            <a href="../../HTML/Pages/AboutUs.html">Sobre nosotros</a>           
+            <a href="../../HTML/Pages/AboutUs.php">Sobre nosotros</a>           
         </div>
         
         <div class="legal">

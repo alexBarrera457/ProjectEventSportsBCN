@@ -11,11 +11,11 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../../HTML/Pages/HomeMenu.html"><img src="../../Assets/Logo1.png"></a>
+                <a href="../../HTML/Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
             </div>
             <div class="but">
-                <a href="../../HTML/Pages/Login.html"><input type="button" value="Cerrar sesión"></a>
-                <a href="../../HTML/Pages/Profile.html"><input type="button" value="Mi cuenta"></a>
+                <a href="../../HTML/Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
+                <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        
     </header>
@@ -42,8 +42,8 @@
     <br>
  
     <div class="buttons">
-        <a href="SignedEvents.html"><input type="button" value="Apuntarse al evento"></a>
-        <a href="SavedEvents.html"><input type="button" value="Guardar evento"></a>
+        <a href="SignedEvents.php"><input type="button" value="Apuntarse al evento"></a>
+        <a href="SavedEvents.php"><input type="button" value="Guardar evento"></a>
     </div>
  
     <br>
@@ -67,7 +67,7 @@
             <strong>Nosotros</strong><br>
             <a href="">Contacto</a><br>
             <a href="">Centro de Ayuda</a><br>
-            <a href="../../HTML/Pages/AboutUs.html">Sobre nosotros</a>           
+            <a href="../../HTML/Pages/AboutUs.php">Sobre nosotros</a>           
         </div>
         
         <div class="legal">

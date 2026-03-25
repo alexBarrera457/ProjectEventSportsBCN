@@ -11,11 +11,11 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../Pages/HomeMenu.html"><img src="../../Assets/Logo1.png"></a>
+                <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
             </div>   
             <div class="profile_but">
-                <a href="../Pages/Login.html"><input type="button" value="Cerrar sesión"></a>
-                <a href="../Pages/Profile.html"><input type="button" value="Mi cuenta"></a>
+                <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
+                <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        
     </header>
@@ -26,25 +26,25 @@
         </div>
    
         <div class="event1">
-            <a href="../Pages/EventTennis.html">
+            <a href="../Pages/EventTennis.php">
             <img src="../../Assets/Tenis.jpeg">
             <h4>Evento 1</h4></a>
         </div>
    
         <div class="event2">
-            <a href="../Pages/EventTennis.html">
+            <a href="../Pages/EventTennis.php">
             <img src="../../Assets/Tenis.jpeg">
             <h4>Evento 2</h4></a>
         </div>
    
         <div class="event3">
-            <a href="../Pages/EventTennis.html">
+            <a href="../Pages/EventTennis.php">
             <img src="../../Assets/Tenis.jpeg">
             <h4>Evento 3</h4></a>
         </div>
    
         <div class="event4">
-            <a href="../Pages/EventTennis.html">
+            <a href="../Pages/EventTennis.php">
             <img src="../../Assets/Tenis.jpeg">
             <h4>Evento 4</h4></a>          
         </div>      
@@ -55,7 +55,7 @@
             <strong>Nosotros</strong><br>
             <a href="">Contacto</a><br>
             <a href="">Centro de Ayuda</a><br>
-            <a href="../Pages/AboutUs.html">Sobre nosotros</a>        
+            <a href="../Pages/AboutUs.php">Sobre nosotros</a>        
         </div>
         
         <div class="legal">

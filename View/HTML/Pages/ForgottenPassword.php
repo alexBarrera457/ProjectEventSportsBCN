@@ -21,7 +21,7 @@
                 <h3>Te hemos enviado un correo, vuelve a iniciar sesión con tu nueva contraseña</h3>
             </div>
             <div class="butt_inicar_sesion">
-                <a href="../Pages/Login.html"><input type="button" value="Iniciar sesíon"></a>
+                <a href="../Pages/Login.php"><input type="button" value="Iniciar sesíon"></a>
             </div>
         </div>
 
