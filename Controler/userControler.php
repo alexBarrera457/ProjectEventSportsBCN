@@ -82,7 +82,10 @@ class UserController
 
     public function logout() {}
 
-    public function register() {}
+    public function register() {
+
+    
+    }
 
     public function __destruct()
     {

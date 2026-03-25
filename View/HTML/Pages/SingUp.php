@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-if(isset($_POST['Name'])) {
+$error = "";
+
+/*if(isset($_POST['Name'])) {
     $_SESSION['name'] = $_POST['Name'];
     $_SESSION['surname'] = $_POST['Surname'];
     $_SESSION['email'] = $_POST['Email'];
@@ -12,9 +14,9 @@ if(isset($_POST['Name'])) {
     header("Location: HomeMenu.php");
 
 }
-
+//*/
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,13 +51,14 @@ if(isset($_POST['Name'])) {
                 <h1>Registro</h1>
             </div>
             <div class="botones_form">
-                <form method="post">
+                <form action="/../../Controler/userControler.php" method="post">
                     Nombre <br><input type="text" name="Name" required><br>
                     Apellidos <br><input type="text" name="Surname" required><br>
+                    Nombre de usuario <br><input type="text" name="User" required><br>
                     Correo electrónico <br><input type="email" name="Email" required><br>
                     Contraseña <br><input type="text" name="Passwd" required><br>
                     Repetir contaseña <br><input type="text" name="Reppasswd" required><br>
-                    <br><a href="../../HTML/Pages/HomeMenu.php"><input type="button" value="Registrarse"></a>
+                    <br><input type="submit" value="Registrarse">
                 </form>    
             </div>                          
         </div>

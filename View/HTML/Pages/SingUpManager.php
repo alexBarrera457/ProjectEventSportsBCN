@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+/*
 if(isset($_POST['Name'])) {
     $_SESSION['name'] = $_POST['Name'];
     $_SESSION['surname'] = $_POST['Surname'];
@@ -13,7 +14,8 @@ if(isset($_POST['Name'])) {
     register();
     header("Location: HomeMenuManager.php");
 
-}
+} 
+    //*/
 
 ?>
 
