@@ -20,9 +20,8 @@ $error = "";
       </div>
       <div class="boton_header">
         <h4>
-          <a href="../../HTML/Pages/SingUp.html"
-            ><input type="button" value="Registrarse"
-          /></a>
+          <a href="../../HTML/Pages/SingUp.php"
+            ><input type="button" value="Registrarse"/></a>
         </h4>
       </div>
     </div>

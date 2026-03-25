@@ -45,37 +45,36 @@ class UserController
         }
         $user = $_POST["user"];
         $password = $_POST["password"];
-        echo __LINE__ . $user . $password;
 
         $sql = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
-            return false;
+            $_SESSION['login_error'] = "Error interno del servidor. Inténtalo más tarde.";
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
         }
-        echo __LINE__;
 
         $stmt->bind_param("s", $user);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows === 1) {
-            echo __LINE__;
             $user = $result->fetch_assoc();
             var_dump($user);
             
             if ($password == $user['password_hash']) {
-                echo __LINE__;
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['nombre_usuario'];
-                // return true;
-                // header profile.php
+                
                 header('Location: ../View/HTML/Pages/Profile.php');
             }
         }else{
             // error in session
+
             // header login.php
+            header('Location: ../View/HTML/Pages/Login.php');
         }
 
         return false;

@@ -10,13 +10,13 @@
   <body>
     <div class="header">
       <div class="logo_web">
-        <a href="../Pages/HomeMenu.html"
+        <a href="../Pages/HomeMenu.php"
           ><img src="../../Assets/Logo1.png"
         /></a>
       </div>
       <div class="boton_header">
         <h4>
-          <a href="../Pages/Login.html"
+          <a href="../Pages/Login.php"
             ><input type="button" value="Cerrar sesión"
           /></a>
         </h4>
@@ -73,7 +73,7 @@
         <strong>Nosotros</strong><br />
         <a href="">Contacto</a><br />
         <a href="">Centro de Ayuda</a><br />
-        <a href="../Pages/AboutUs.html">Sobre nosotros</a>
+        <a href="../Pages/AboutUs.php">Sobre nosotros</a>
       </div>
 
       <div class="legal">
