@@ -10,7 +10,7 @@
 <body>
     <div class="header">
       <div class="logo_web">
-        <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" /></a>
+        <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
       </div>
       <div class="boton_header">
         <h4>
@@ -24,28 +24,28 @@
     </div>
 
     <div class="recuadro_futbol">
-        <img src="../../Assets/Futbol.jpeg">
+        <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
         <h4>Fútbol</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
         <a href="Football.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_baloncesto">
-        <img src="../../Assets/Baloncesto.jpeg">
+        <img src="../../Assets/Baloncesto.jpeg" alt="Foto baloncesto">
         <h4>Baloncesto</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
         <a href="Basketball.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_tenis">
-        <img src="../../Assets/Tenis.jpeg">
+        <img src="../../Assets/Tenis.jpeg" alt="Foto tenis">
         <h4>Tenis</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
         <a href="Tennis.php">Ir al deporte ⮕</a>
     </div>
 
     <div class="recuadro_paddle">
-      <img src="../../Assets/Paddle.jpeg">
+      <img src="../../Assets/Paddle.jpeg" alt="Foto paddle">
         <h4>Paddle</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
         <a href="Paddle.php">Ir al deporte ⮕</a>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="recuadro_golf">
-        <img src="../../Assets/Golf.jpeg">
+        <img src="../../Assets/Golf.jpeg" alt="Foto golf">
         <h4>Golf</h4>
         <a href = ""><input type="button" value="Seguir deporte"></a>
         <a href="Golf.php">Ir al deporte ⮕</a>

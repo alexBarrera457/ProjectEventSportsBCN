@@ -16,20 +16,19 @@ $error = "";
   <body>
     <div class="header">
       <div class="logo_web">
-        <img src="../../Assets/Logo1.png"/>
+        <img src="../../Assets/Logo1.png" alt="Logo"/>
       </div>
       <div class="boton_header">
-        <h4>
-          <a href="../../HTML/Pages/SingUp.php"
-            ><input type="button" value="Registrarse"/></a>
-        </h4>
+        
+          <a href="../../HTML/Pages/SingUp.php"><input type="button" value="Registrarse" alt="Registrarse"/> </a>
+       
       </div>
     </div>
 
     <div class="fondo">
       <div class="recuadro_inicio_sesion">
         <div class="titulo_inicio_sesion">
-          <h2>Iniciar sesión</h2>
+          <h1>Iniciar sesión</h1>
         </div>
         
         <div class="form">

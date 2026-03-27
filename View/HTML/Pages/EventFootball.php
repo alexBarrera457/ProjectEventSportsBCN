@@ -11,7 +11,7 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../../HTML/Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
+                <a href="../../HTML/Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"></a>
             </div>
             <div class="but">
                 <a href="../../HTML/Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
@@ -26,7 +26,7 @@
             <h1>Fútbol</h1>
             <h2>(Nombre del evento)</h2>
  
-            <img src="../../Assets/Futbol.jpeg">
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
         </div>
         <br>
  
@@ -57,7 +57,7 @@
         </div>
  
         <div class="location_link">
-            <img src="../../Assets/maps.jpeg">
+            <img src="../../Assets/maps.jpeg" alt="Foto maps">
             <a href="https://www.google.com/maps">Link ubicación</a>
         </div>
     </div>

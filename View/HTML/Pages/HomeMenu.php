@@ -12,7 +12,7 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <img src="../../Assets/Logo1.png">
+                <img src="../../Assets/Logo1.png" alt="Logo">
             </div>
             <div class="but">
                 <a href="../../HTML/Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
@@ -27,10 +27,10 @@
         </div>
         <div class="buttons_lab1">
             <a href="SingUpManager.php"><input type="button" value="Registrarse como manager"></a>
-            <a href="LoginManager.php"><input type="button" value="Iniciar sesión como manager"></a>
+            <a href="Login.php"><input type="button" value="Iniciar sesión como manager"></a>
  
             <div class="img1">
-                <img src="../../Assets/foto_home.jpeg">
+                <img src="../../Assets/foto_home.jpeg" alt="Foto Home">
             </div>
         </div>
     </div>
@@ -48,12 +48,12 @@
  
         <div class="football_label">
             <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4></a>
-            <img src="../../Assets/Futbol.jpeg">          
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">          
         </div>
  
         <div class="basketball_label">
             <a href="Basketball.php"><h4>Baloncesto</h4></a>
-            <img src="../../Assets/Baloncesto.jpeg">
+            <img src="../../Assets/Baloncesto.jpeg" alt="Foto baloncesto">
         </div>
  
     </div>

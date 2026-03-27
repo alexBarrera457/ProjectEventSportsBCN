@@ -10,18 +10,14 @@
   <body>
     <div class="header">
       <div class="logo_web">
-        <a href="../Pages/HomeMenu.php"
-          ><img src="../../Assets/Logo1.png"
-        /></a>
+        <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
       </div>
+
       <div class="boton_header">
-        <h4>
-          <a href="../Pages/Login.php"
-            ><input type="button" value="Cerrar sesión"
-          /></a>
-        </h4>
+          <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión"/></a>
       </div>
     </div>
+    
     <div class="fondo">
       <div class="recuadro">
         <div class="titulo_mi_cuenta">
@@ -29,7 +25,7 @@
         </div>
 
         <div class="logo_usuario">
-          <img src="../../Assets/logo_usuario.png" />
+          <img src="../../Assets/logo_usuario.png" alt="Foto perfil" />
         </div>
 
         <div class="titulo_mis_datos">

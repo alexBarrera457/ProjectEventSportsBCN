@@ -11,7 +11,7 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
+                <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"></a>
             </div>   
             <div class="profile_but">
                 <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
@@ -27,25 +27,25 @@
    
         <div class="event1">
             <a href="../Pages/EventFootball.php">
-            <img src="../../Assets/Futbol.jpeg">
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
             <h4>Evento 1</h4></a>
         </div>
    
         <div class="event2">
             <a href="../Pages/EventFootball.php">
-            <img src="../../Assets/Futbol.jpeg">
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
             <h4>Evento 2</h4></a>
         </div>
    
         <div class="event3">
             <a href="../Pages/EventFootball.php">
-            <img src="../../Assets/Futbol.jpeg">
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
             <h4>Evento 3</h4></a>
         </div>
    
         <div class="event4">
             <a href="../Pages/EventFootball.php">
-            <img src="../../Assets/Futbol.jpeg">
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">
             <h4>Evento 4</h4></a>          
         </div>      
     </div>  
