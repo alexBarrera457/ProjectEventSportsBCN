@@ -1,7 +1,8 @@
 <?php
 session_start(); // Start the session
 
-$error = "";
+$error = $_SESSION['login_error'] ?? '';
+unset($_SESSION['login_error']);
 ?>
 
 <!doctype html>
