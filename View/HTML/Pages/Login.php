@@ -34,22 +34,36 @@ unset($_SESSION['login_error']);
         
         <div class="form">
           <form action="../../../Controler/userControler.php" method="post">
-
+            
             <label for="usuario">Usuario</label>
             <input type="text" name="user" id="usuario"/>
 
             <br /><br />
 
             <label for="contraseña">Contraseña</label>
-            <input type="text" name="password" id="contraseña"/>
+            <input type="password" name="password" id="contraseña"/>
 
-            <br /><br />
+            
 
             <div class="enter_button">
              <input type="submit" value="Entrar" name="login"/>
             </div>
-            
-            <br><br>
+
+            <br />
+            <?php if (!empty($error)): ?>
+              <div style="
+                color: white;
+                background-color: #c0392b;
+                border: 1px solid #96281b;
+                border-radius: 6px;
+                padding: 10px 14px;
+                margin-bottom: 12px;
+                font-size: 0.9rem;
+                text-align: center;
+              ">
+                <?= htmlspecialchars($error) ?>
+              </div>
+            <?php endif; ?>
             
             <div class="ask_forgotten_password">
               ¿Has olvidado tu contaseña?
