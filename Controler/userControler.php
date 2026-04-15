@@ -1,32 +1,29 @@
 <?php
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user = new UserController();
-    //vemos que boton es el que presionar el usuario
+
     if (isset($_POST["login"])) {
-        echo "<p>login button clicked.</p>";
         $user->login();
     }
     if (isset($_POST["logout"])) {
-        echo "<p>logout button clicked.</p>";
         $user->logout();
     }
     if (isset($_POST["register"])) {
-        echo "<p>register button clicked.</p>";
         $user->register();
     }
 }
 
 class UserController
 {
-
     private $conn;
 
     public function __construct()
     {
-        $host = "localhost";
-        $usuario = "root";
-        $password = "";
+        $host      = "localhost";
+        $usuario   = "root";
+        $password  = "";
         $base_datos = "eventsportsbcn";
 
         $this->conn = new mysqli($host, $usuario, $password, $base_datos);
@@ -40,13 +37,17 @@ class UserController
 
     public function login()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $user = $_POST["user"];
+        $user     = $_POST["user"];
         $password = $_POST["password"];
 
-        $sql = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
+        // Campos vacíos
+        if (empty($user) || empty($password)) {
+            $_SESSION['login_error'] = "Por favor, completa todos los campos.";
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+
+        $sql  = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
@@ -60,24 +61,25 @@ class UserController
         $result = $stmt->get_result();
 
         if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-            var_dump($user);
-            
-            if ($password == $user['password_hash']) {
+            $userData = $result->fetch_assoc();
+
+            if ($password === $userData['password_hash']) {
                 session_regenerate_id(true);
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['nombre_usuario'];
-                
+                $_SESSION['user_id']  = $userData['id'];
+                $_SESSION['username'] = $userData['nombre_usuario'];
                 header('Location: ../View/HTML/Pages/Profile.php');
+                exit();
+            } else {
+                $_SESSION['login_error'] = "Contraseña incorrecta.";
+                header('Location: ../View/HTML/Pages/Login.php');
+                exit();
             }
-        }else{
-            // error in session
 
-            // header login.php
+        } else {
+            $_SESSION['login_error'] = "El usuario no existe.";
             header('Location: ../View/HTML/Pages/Login.php');
+            exit();
         }
-
-        return false;
     }
 
     public function logout() {}

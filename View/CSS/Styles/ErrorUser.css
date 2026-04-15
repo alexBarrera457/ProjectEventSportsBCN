@@ -1,0 +1,123 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+.header_web {
+    display: flex;
+    align-items: center;
+    background-color: #045694;
+    padding: 10px 40px;
+    height: 70px;
+}   
+
+.logo img {
+   display: flex;
+    justify-content: center;
+    margin: auto;
+    height: 100px;
+    position: relative;
+}
+
+.but input[type="button"] {
+    background-color: white;
+    color: #045694;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.fondo {
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    min-height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.recuadro {
+    background-color: white; 
+    padding: 30px 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.title1 h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.title1 h1::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #3498db;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.text {
+    font-size: 1rem;
+    text-align: justify;
+    color: #555;
+    white-space: pre-line;
+}
+
+/* tablet */
+@media screen and (max-width: 768px) {
+    .header_web {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .foot {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+
+    .recuadro {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .title1 h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* movil */
+@media screen and (max-width: 480px) {
+    .header_web {
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+}

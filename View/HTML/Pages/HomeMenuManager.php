@@ -12,7 +12,7 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <img src="../../Assets/Logo1.png">
+                <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" /></a>
             </div>
             <div class="but">
                 <a href="../../HTML/Pages/Login.php"><input type="button" value="Cerrar sesión"></a>
