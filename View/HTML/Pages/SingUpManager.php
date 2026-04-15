@@ -47,9 +47,9 @@ unset($_SESSION['register_error']);
                 Nombre de usuario <br><input type="text" name="User" required><br>
                 Correo electrónico <br><input type="email" name="Email" required><br>
                 Entidad <br><input type="text" name="Entidad" required><br>
-                Teléfono <br><input type="number" name="Telefono" required><br>
-                Contraseña <br><input type="text" name="Passwd" required><br>
-                Repetir contaseña <br><input type="text" name="Reppasswd" required><br>
+                Teléfono <br><input type="text" name="Telefono" required><br>
+                Contraseña <br><input type="password" name="Passwd" required><br>
+                Repetir contaseña <br><input type="password" name="Repasswd" required><br>
                 <input type="hidden" name="rol" value="manager">
                 <br><input type="button" value="Registrarse"></a>
                 
