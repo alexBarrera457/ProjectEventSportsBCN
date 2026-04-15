@@ -1,20 +1,47 @@
--- Create Database
+-- Crear la base de datos
 CREATE DATABASE IF NOT EXISTS eventsportsbcn;
 USE eventsportsbcn;
 
--- Create Table usuarios
-CREATE TABLE IF NOT EXISTS usuarios (
+-- Tabla de usuarios (usuario normal y manager)
+CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    estado ENUM('activo', 'inactivo') DEFAULT 'activo'
+    rol ENUM('usuario', 'manager') NOT NULL DEFAULT 'usuario',
+    -- Solo para managers
+    entidad VARCHAR(100) DEFAULT NULL,
+    telefono VARCHAR(15) DEFAULT NULL,
+    -- Foto de perfil
+    foto_perfil VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert 3 test records
-INSERT INTO usuarios (nombre_usuario, password_hash, email, estado) VALUES
-('user1', '12345', 'user1@example.com', 'activo'),
-('user2', '12345', 'user2@example.com', 'activo'),
-('user3', '12345', 'user3@example.com', 'activo');
+-- Tabla de eventos deportivos
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    deporte VARCHAR(50) NOT NULL,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    ubicacion VARCHAR(150) NOT NULL,
+    plazas_totales INT NOT NULL,
+    plazas_disponibles INT NOT NULL,
+    id_manager INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_manager) REFERENCES usuarios(id)
+);
+
+-- Tabla de inscripciones (usuario se apunta a un evento)
+CREATE TABLE inscripciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_evento INT NOT NULL,
+    fecha_inscripcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_evento) REFERENCES eventos(id)
+);
  

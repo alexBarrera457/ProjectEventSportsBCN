@@ -95,24 +95,33 @@ class UserController
         $email = $_POST["Email"];
         $passwd = $_POST["Passwd"];
         $repasswd = $_POST["Repasswd"];
+        $rol = $_POST["rol"];
 
-        $sql = "INSERT INTO usuarios (id, nombre_usuario, password_hash, email) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
+        //campos extra manager
+        $entidad = $_POST["Entidad"] ?? null;
+        $telefono = $_POST["Telefono"] ?? null;
 
-        if (!$stmt) {
-            $_SESSION['register_error'] = "Error interno del servidor. Inténtalo de nuevo más tarde.";
-            header('Location: ../View/HTML/Pages/SignUp.php');
+        //Contraseñas no coinciden
+        if ($passwd !== $repasswd) {
+            $_SESSION['register_error'] = "Las contraseñas no coinciden.";
+            header('Location: ../View/HTML/Pages/SingUp.php');
             exit();
         }
 
-        $stmt->bind_param("s", $user, $passwd, $email);
+        // Guardar en la base de datos con todos los campos
+        $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssssssss", $name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono);
 
         if ($stmt->execute()) {
-            echo "Registro insertado.<br>";
             header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        } else {
+            $_SESSION['register_error'] = "Error al registrar. Inténtalo de nuevo.";
+            header('Location: ../View/HTML/Pages/SignUp.php');
+            exit();
         }
-        
-        $result = $stmt->get_result();
     
     }
 
