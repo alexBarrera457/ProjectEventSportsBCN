@@ -83,7 +83,34 @@ class UserController
     public function logout() {}
 
     public function register() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
+        $name = $_POST["Name"];
+        $surname = $_POST["Surname"];
+        $user = $_POST["User"];
+        $email = $_POST["Email"];
+        $passwd = $_POST["Passwd"];
+        $repasswd = $_POST["Repasswd"];
+
+        $sql = "INSERT INTO usuarios (id, nombre_usuario, password_hash, email) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            $_SESSION['register_error'] = "Error interno del servidor. Inténtalo de nuevo más tarde.";
+            header('Location: ../View/HTML/Pages/SignUp.php');
+            exit();
+        }
+
+        $stmt->bind_param("s", $user, $passwd, $email);
+
+        if ($stmt->execute()) {
+            echo "Registro insertado.<br>";
+            header('Location: ../View/HTML/Pages/Profile.php');
+        }
+        
+        $result = $stmt->get_result();
     
     }
 

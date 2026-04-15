@@ -50,7 +50,7 @@ unset($_SESSION['register_error']);
                     Contraseña <br><input type="text" name="Passwd" required><br>
                     Repetir contaseña <br><input type="text" name="Reppasswd" required><br>
                     <input type="hidden" name="rol" value="usuario">
-                    <br><input type="submit" value="Registrarse" name="register">
+                    <br><input type="button" value="Registrarse" name="register">
                 </form>    
             </div>                          
         </div>
