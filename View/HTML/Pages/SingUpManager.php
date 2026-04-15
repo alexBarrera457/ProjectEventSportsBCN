@@ -23,7 +23,7 @@ unset($_SESSION['register_error']);
                 <img src="../../Assets/Logo1.png">
             </div>
             <div class="login_but">
-                <a href="../../HTML/Pages/LoginManager.php"><input type="button" value="Iniciar sesión"></a>
+                <a href="../../HTML/Pages/Login.php"><input type="button" value="Iniciar sesión"></a>
             </div>
         </div>        
     </header>
