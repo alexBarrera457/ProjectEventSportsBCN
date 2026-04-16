@@ -33,27 +33,36 @@ unset($_SESSION['register_error']);
         <div class="titulo_registro">
             <h1>Registrarse como manager</h1>
         </div>
-
-        <?php if (!empty($error)): ?>                 
-            <div class="error_msg">                     
-                <p><?= htmlspecialchars($error) ?></p>                 
-            </div>             
-        <?php endif; ?>
-
         <div class="botones_form">
-            <form action="../../../Controler/userControler.php" method="post">
-                Nombre <br><input type="text" name="Name" required><br>
-                Apellidos <br><input type="text" name="Surname" required><br>
-                Nombre de usuario <br><input type="text" name="User" required><br>
-                Correo electrónico <br><input type="email" name="Email" required><br>
-                Entidad <br><input type="text" name="Entidad" required><br>
-                Teléfono <br><input type="text" name="Telefono" required><br>
-                Contraseña <br><input type="password" name="Passwd" required><br>
-                Repetir contaseña <br><input type="password" name="Repasswd" required><br>
+            <form action="../../../Controler/userControler.php" method="post" enctype="multipart/form-data">
+                Nombre <br><input type="text" name="Name"><br>
+                Apellidos <br><input type="text" name="Surname"><br>
+                Nombre de usuario <br><input type="text" name="User"><br>
+                Correo electrónico <br><input type="email" name="Email"><br>
+                Entidad <br><input type="text" name="Entidad"><br>
+                Teléfono <br><input type="text" name="Telefono"><br>
+                Foto de perfil <br><input type="file" name="foto_perfil" accept="image/jpeg,image/png"><br>
+                Contraseña <br><input type="password" name="Passwd"><br>
+                Repetir contaseña <br><input type="password" name="Repasswd"><br>
                 <input type="hidden" name="rol" value="manager">
-                <br><input type="submit" value="Registrarse">
 
-            </div>              
+                <?php if (!empty($error)): ?>
+                <div style="
+                    color: white;
+                    background-color: #c0392b;
+                    border: 1px solid #96281b;
+                    border-radius: 6px;
+                    padding: 10px 14px;
+                    margin-bottom: 12px;
+                    font-size: 0.9rem;
+                    text-align: center;
+                ">
+                    <?= htmlspecialchars($error) ?>
+                </div>
+                <?php endif; ?>
+
+                <br><input type="submit" value="Registrarse" name="register">
+             
             </form>
         </div>
      </div>

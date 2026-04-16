@@ -85,9 +85,6 @@ class UserController
     public function logout() {}
 
     public function register() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
 
         $name = $_POST["Name"];
         $surname = $_POST["Surname"];
@@ -101,28 +98,66 @@ class UserController
         $entidad = $_POST["Entidad"] ?? null;
         $telefono = $_POST["Telefono"] ?? null;
 
+        // Campos vacíos
+        if (empty($name) || empty($surname) || empty($user) || empty($email) || empty($passwd) || empty($repasswd)) {
+            $_SESSION['register_error'] = "Por favor, completa todos los campos.";
+            
+            if ($rol === 'manager') {
+                header('Location: ../View/HTML/Pages/SingUpManager.php');
+            } else {
+                header('Location: ../View/HTML/Pages/SingUp.php');
+            }
+            exit();
+        }
+
         //Contraseñas no coinciden
         if ($passwd !== $repasswd) {
             $_SESSION['register_error'] = "Las contraseñas no coinciden.";
-            header('Location: ../View/HTML/Pages/SingUp.php');
+
+            if ($rol === 'manager') {
+                header('Location: ../View/HTML/Pages/SingUpManager.php');
+            } else {
+                header('Location: ../View/HTML/Pages/SingUp.php');
+            }
             exit();
         }
 
-        // Guardar en la base de datos con todos los campos
-        $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        // Subida de imagen solo manager
+        $foto_perfil = null;
+        if ($rol === 'manager' && !empty($_FILES['foto_perfil']['tmp_name'])) {
+            $filename = $_FILES['foto_perfil']['name'];
+            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "profileImages/" . $filename);
+            $foto_perfil = $filename;
+        }
+
+        // Guardar en base de datos
+        $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono, foto_perfil) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssssssss", $name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono);
+        $stmt->bind_param("sssssssss", $name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono, $foto_perfil);
 
         if ($stmt->execute()) {
-            header('Location: ../View/HTML/Pages/Profile.php');
+            $_SESSION['user_id']  = $stmt->insert_id;
+            $_SESSION['username'] = $user;
+            $_SESSION['rol']      = $rol;
+
+            if ($rol === 'manager') {
+                header('Location: ../View/HTML/Pages/HomeMenuManager.php');
+            } else {
+                header('Location: ../View/HTML/Pages/HomeMenu.php');
+            }
             exit();
+
         } else {
-            $_SESSION['register_error'] = "Error al registrar. Inténtalo de nuevo.";
-            header('Location: ../View/HTML/Pages/SignUp.php');
+            $_SESSION['register_error'] = "Error al registrar: " . $stmt->error;
+            
+            if ($rol === 'manager') {
+                header('Location: ../View/HTML/Pages/SingUpManager.php');
+            } else {
+                header('Location: ../View/HTML/Pages/SingUp.php');
+            }
             exit();
         }
-    
     }
 
     public function __destruct()
