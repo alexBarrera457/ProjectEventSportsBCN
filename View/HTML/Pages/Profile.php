@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: Login.php');
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +22,11 @@
       </div>
 
       <div class="boton_header">
-          <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión"/></a>
+          <?php if (isset($_SESSION['user_id'])): ?>
+                <form method="POST" action="../../../Controler/userControler.php">
+                    <button type="submit" name="logout">Cerrar sesión</button>
+                </form>
+            <?php endif; ?>
       </div>
     </div>
     
