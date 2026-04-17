@@ -18,7 +18,7 @@ body, html {
     height: 120px; 
 }
 
-.but input[type="button"] {
+.but input[type="submit"], .but input[type="button"] {
     background-color: white;
     color: #045694;
     border: none;

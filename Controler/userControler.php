@@ -47,7 +47,7 @@ class UserController
             exit();
         }
 
-        $sql  = "SELECT id, nombre_usuario, password_hash FROM usuarios WHERE nombre_usuario = ?";
+        $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
@@ -67,6 +67,7 @@ class UserController
                 session_regenerate_id(true);
                 $_SESSION['user_id']  = $userData['id'];
                 $_SESSION['username'] = $userData['nombre_usuario'];
+                $_SESSION['rol']      = $userData['rol'];
                 header('Location: ../View/HTML/Pages/Profile.php');
                 exit();
             } else {
@@ -82,7 +83,14 @@ class UserController
         }
     }
 
-    public function logout() {}
+    public function logout() {
+
+        session_unset();  
+        session_destroy();  
+        header('Location: ../View/HTML/Pages/Login.php');
+        exit();
+        
+    }
 
     public function register() {
 

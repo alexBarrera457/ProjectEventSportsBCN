@@ -86,7 +86,7 @@ body, html {
     box-sizing: border-box; 
 }
 
-.botones_form input[type="button"] {
+.botones_form input[type="submit"] {
     background-color: #045694;
     color: white;
     border: none;
@@ -101,7 +101,7 @@ body, html {
     transition: background 0.3s;
 }
 
-.botones_form input[type="button"]:hover {
+.botones_form input[type="submit"]:hover {
     background-color: #033d6a;
 }
 
