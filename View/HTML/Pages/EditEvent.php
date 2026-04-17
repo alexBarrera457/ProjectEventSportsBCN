@@ -24,6 +24,13 @@ if (!isset($_SESSION['user_id'])) {
           /></a>
         </div>
         <div class="profile_but">
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <form method="POST" action="../../../Controler/userControler.php">
+                    <button type="submit" name="logout">Cerrar sesión</button>
+                </form>
+            <?php endif; ?>
+            
           <a href="../../HTML/Pages/Profile.php"
             ><input type="button" value="Mi cuenta"
           /></a>

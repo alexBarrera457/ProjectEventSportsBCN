@@ -22,7 +22,11 @@ if (!isset($_SESSION['user_id'])) {
           <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" /></a>
         </div>
         <div class="but">
-          <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión" /></a>
+          <?php if (isset($_SESSION['user_id'])): ?>
+                <form method="POST" action="../../../Controler/userControler.php">
+                    <button type="submit" name="logout">Cerrar sesión</button>
+                </form>
+            <?php endif; ?>
           <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta" /></a>
         </div>
       </div>
