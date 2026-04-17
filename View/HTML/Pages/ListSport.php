@@ -14,7 +14,13 @@
       </div>
       <div class="boton_header">
         <h4>
-          <a href="../Pages/Login.php"><input type="button" value="Cerrar sesión" /></a>
+            
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <form method="POST" action="../../../Controler/userControler.php">
+                    <button type="submit" name="logout">Cerrar sesión</button>
+                </form>
+            <?php endif; ?>
+
           <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta" /></a>
         </h4>
       </div>
