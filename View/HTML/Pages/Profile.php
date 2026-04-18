@@ -18,7 +18,13 @@ if (!isset($_SESSION['user_id'])) {
   <body>
     <div class="header">
       <div class="logo_web">
-        <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+
+        <?php if ($_SESSION['rol'] === 'manager'): ?>
+            <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+          <?php else: ?>
+            <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+          <?php endif; ?>
+          
       </div>
 
       <div class="boton_header">

@@ -1,17 +1,8 @@
 <?php
-session_start(); 
-if (!isset($_SESSION['user_id'])) {     
-  header('Location: Login.php');     
-  exit();
-}
-?>
-
-<?php
 session_start();
 
 $error = $_SESSION['register_error'] ?? '';
 unset($_SESSION['register_error']);
-
 ?>
 
 <!DOCTYPE html>

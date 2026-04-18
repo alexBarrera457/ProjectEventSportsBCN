@@ -6,6 +6,13 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 
+<?php
+if ($_SESSION['rol'] !== 'manager') {
+    header('Location: HomeMenu.php');
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>

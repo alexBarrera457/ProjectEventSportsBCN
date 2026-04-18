@@ -4,7 +4,6 @@ session_start();
 $error = $_SESSION['register_error'] ?? '';
 unset($_SESSION['register_error']);
 
-
 ?>
  
 <!DOCTYPE html>

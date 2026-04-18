@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +15,13 @@
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
+
+            <?php if ($_SESSION['rol'] === 'manager'): ?>
+                <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+            <?php else: ?>
+                <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+            <?php endif; ?>
+
             </div>   
             <div class="profile_but">
 

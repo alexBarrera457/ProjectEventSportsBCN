@@ -1,9 +1,5 @@
 <?php
-session_start(); 
-if (!isset($_SESSION['user_id'])) {     
-  header('Location: Login.php');     
-  exit();
-}
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +15,13 @@ if (!isset($_SESSION['user_id'])) {
     <header>
         <div class="header_web">
             <div class="logo">
-                <a href="../../HTML/Pages/HomeMenu.php"><img src="../../Assets/Logo1.png"></a>
+
+            <?php if ($_SESSION['rol'] === 'manager'): ?>
+                <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+            <?php else: ?>
+                <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+            <?php endif; ?>
+
             </div>
             <div class="but">
 
@@ -28,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
                         <button type="submit" name="logout">Cerrar sesión</button>
                     </form>
                 <?php endif; ?>
-                
+
                 <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        

@@ -1,4 +1,17 @@
+<?php
+session_start(); 
+if (!isset($_SESSION['user_id'])) {     
+  header('Location: Login.php');     
+  exit();
+}
+?>
 
+<?php
+if ($_SESSION['rol'] !== 'manager') {
+    header('Location: HomeMenu.php');
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
