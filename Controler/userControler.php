@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 class UserController
 {
-    private $conn;
+    private ?PDO $conn;
 
     public function __construct()
     {
@@ -26,62 +26,51 @@ class UserController
         $password  = "";
         $base_datos = "eventsportsbcn";
 
-        $this->conn = new mysqli($host, $usuario, $password, $base_datos);
-
-        if ($this->conn->connect_error) {
-            die("Error de conexión: " . $this->conn->connect_error);
+        try {
+            $this->conn = new PDO("mysql:host=$host;dbname=$base_datos;charset=utf8mb4", $usuario, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            die("Error de conexión: " . $e->getMessage());
         }
-
-        $this->conn->set_charset("utf8mb4");
     }
 
     public function login()
-    {
-        $user     = $_POST["user"];
-        $password = $_POST["password"];
+{
+    $user     = $_POST["user"];
+    $password = $_POST["password"];
 
-        // Campos vacíos
-        if (empty($user) || empty($password)) {
-            $_SESSION['login_error'] = "Por favor, completa todos los campos.";
-            header('Location: ../View/HTML/Pages/Login.php');
-            exit();
-        }
-
-        $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";
-        $stmt = $this->conn->prepare($sql);
-
-        if (!$stmt) {
-            $_SESSION['login_error'] = "Error interno del servidor. Inténtalo más tarde.";
-            header('Location: ../View/HTML/Pages/Login.php');
-            exit();
-        }
-
-        $stmt->bind_param("s", $user);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows === 1) {
-            $userData = $result->fetch_assoc();
-
-            if ($password === $userData['password_hash']) {
-                session_regenerate_id(true);
-                $_SESSION['user_id']  = $userData['id'];
-                $_SESSION['username'] = $userData['nombre_usuario'];
-                $_SESSION['rol']      = $userData['rol'];
-                header('Location: ../View/HTML/Pages/Profile.php');
-                exit();
-            } else {
-                $_SESSION['login_error'] = "Contraseña incorrecta.";
-                header('Location: ../View/HTML/Pages/Login.php');
-                exit();
-            }
-
-        } else {
-            $_SESSION['login_error'] = "El usuario no existe.";
-            header('Location: ../View/HTML/Pages/Login.php');
-            exit();
-        }
+    // Campos vacíos
+    if (empty($user) || empty($password)) {
+        $_SESSION['login_error'] = "Por favor, completa todos los campos.";
+        header('Location: ../View/HTML/Pages/Login.php');
+        exit();
     }
+
+    $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$user]);
+    $userData = $stmt->fetch();
+
+    if ($userData) {
+        if ($password === $userData['password_hash']) {
+            session_regenerate_id(true);
+            $_SESSION['user_id']  = $userData['id'];
+            $_SESSION['username'] = $userData['nombre_usuario'];
+            $_SESSION['rol']      = $userData['rol'];
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        } else {
+            $_SESSION['login_error'] = "Contraseña incorrecta.";
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+    } else {
+        $_SESSION['login_error'] = "El usuario no existe.";
+        header('Location: ../View/HTML/Pages/Login.php');
+        exit();
+    }
+}
 
     public function logout() {
 
@@ -140,38 +129,27 @@ class UserController
 
         // Guardar en base de datos
         $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono, foto_perfil) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssssssss", $name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono, $foto_perfil);
+        $stmt->execute([$name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono, $foto_perfil]);
 
-        if ($stmt->execute()) {
-            $_SESSION['user_id']  = $stmt->insert_id;
-            $_SESSION['username'] = $user;
-            $_SESSION['rol']      = $rol;
 
-            if ($rol === 'manager') {
-                header('Location: ../View/HTML/Pages/HomeMenuManager.php');
-            } else {
-                header('Location: ../View/HTML/Pages/HomeMenu.php');
-            }
-            exit();
+        $_SESSION['user_id']  = $this->conn->lastInsertId();
+        $_SESSION['username'] = $user;
+        $_SESSION['rol']      = $rol;
 
+        if ($rol === 'manager') {
+            header('Location: ../View/HTML/Pages/HomeMenuManager.php');
         } else {
-            $_SESSION['register_error'] = "Error al registrar: " . $stmt->error;
-            
-            if ($rol === 'manager') {
-                header('Location: ../View/HTML/Pages/SingUpManager.php');
-            } else {
-                header('Location: ../View/HTML/Pages/SingUp.php');
-            }
-            exit();
+            header('Location: ../View/HTML/Pages/HomeMenu.php');
         }
-    }
+        exit();
+        }
+    
 
     public function __destruct()
     {
-        if ($this->conn) {
-            $this->conn->close();
-        }
+        $this->conn = null;
     }
+
 }
