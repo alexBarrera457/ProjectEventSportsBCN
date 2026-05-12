@@ -46,13 +46,25 @@ if ($_SESSION['rol'] !== 'manager') {
                 <?php endif; ?>
                 <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
-        </div>         
+    </div> 
+    
 
     <div class="menu_sport_events">
         <div class="titleMyEvents">
             <h1>Eventos creados</h1>
         </div>
    
+    <div class="buscador">
+            <input type="text" id="inputBuscar" placeholder="Buscar evento...">
+            <input type="date" id="inputFecha">
+            <select id="selectOrden">
+                <option value="default">Ordenar</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+            </select>
+            <span id="contador">4 eventos</span>
+    </div>
+
         <div class="event1">
             <img src="../../Assets/SportsIcon.png">
             <a href=""></a>

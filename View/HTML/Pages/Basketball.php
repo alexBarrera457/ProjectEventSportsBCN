@@ -42,6 +42,17 @@ session_start();
             <h1>Baloncesto</h1>
         </div>
    
+        <div class="buscador">
+            <input type="text" id="inputBuscar" placeholder="Buscar evento...">
+            <input type="date" id="inputFecha">
+            <select id="selectOrden">
+                <option value="default">Ordenar</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+            </select>
+            <span id="contador">4 eventos</span>
+        </div>
+
         <div class="event1">
             <a href="../Pages/EventBasketball.php">
             <img src="../../Assets/Baloncesto.jpeg">

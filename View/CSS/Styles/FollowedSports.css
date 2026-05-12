@@ -147,6 +147,43 @@ body, html {
     font-size: 1.1em;
 }
 
+.buscador {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.buscador input[type="text"],
+.buscador input[type="date"],
+.buscador select {
+    padding: 8px 12px;
+    border: 2px solid #cce0f5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.buscador input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+}
+
+.buscador input:focus,
+.buscador select:focus {
+    border-color: #045694;
+}
+
+#contador {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
 /* tablet */
 @media screen and (max-width: 768px) {
     .header_web {
