@@ -19,7 +19,7 @@ session_start();
             <?php else: ?>
                 <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
             <?php endif; ?>
-            </div> 
+            </div>
             
             <div class="nav_header">
                 <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
@@ -37,9 +37,20 @@ session_start();
             </div>
         </div>        
  
-    <div class="menu_events">
-        <div class="titleEventF">
-            <h1>Fútbol</h1>
+        <div class="menu_events">
+            <div class="titleEventF">
+                <h1>Fútbol</h1>
+        </div>
+
+        <div class="buscador">
+            <input type="text" id="inputBuscar" placeholder="Buscar evento...">
+            <input type="date" id="inputFecha">
+            <select id="selectOrden">
+                <option value="default">Ordenar</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+            </select>
+            <span id="contador">4 eventos</span>
         </div>
    
         <div class="event1">
