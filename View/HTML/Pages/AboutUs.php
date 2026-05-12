@@ -16,27 +16,30 @@ if (!isset($_SESSION['user_id'])) {
     <title>About Us</title>
   </head>
   <body>
-    <header>
-      <div class="header_web">
-        <div class="logo">
-          
-          <?php if ($_SESSION['rol'] === 'manager'): ?>
-            <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
-          <?php else: ?>
-            <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
-          <?php endif; ?>
-
-        </div>
-        <div class="but">
-          <?php if (isset($_SESSION['user_id'])): ?>
-                <form method="POST" action="../../../Controler/userControler.php">
-                    <button type="submit" name="logout">Cerrar sesión</button>
-                </form>
+    <div class="header_web">
+            <div class="logo_web">
+            <?php if ($_SESSION['rol'] === 'manager'): ?>
+                <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+            <?php else: ?>
+                <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
             <?php endif; ?>
-          <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta" /></a>
+            </div> 
+            
+            <div class="nav_header">
+                <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
+                <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
+                <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+            </div>
+
+            <div class="boton_header">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <form method="POST" action="../../../Controler/userControler.php">
+                        <button type="submit" name="logout">Cerrar sesión</button>
+                    </form>
+                <?php endif; ?>
+                <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
+            </div>
         </div>
-      </div>
-    </header>
 
     <div class="fondo">
     <div class="recuadro">

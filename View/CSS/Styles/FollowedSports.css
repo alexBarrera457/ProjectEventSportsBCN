@@ -14,11 +14,38 @@ body, html {
     height: 70px;
 }
 
-.logo img {
-    height: 120px; 
+.logo_web img {
+    height: 120px;
 }
 
-.profile_but {
+.nav_header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav_header a {
+    text-decoration: none;
+}
+
+.nav_header button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav_header button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.boton_header {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -26,8 +53,8 @@ body, html {
     flex-wrap: wrap;
 }
 
-.profile_but input[type="button"],
-.profile_but button {
+.boton_header button,
+.boton_header input[type="button"] {
     background-color: white;
     color: #045694;
     border: none;
