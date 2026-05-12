@@ -10,8 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST["logout"])) {
         $user->logout();
     }
-    if (isset($_POST["register"])) {
+    if (isset($_POST["register"])) {    
         $user->register();
+    }
+     if (isset($_POST["update_user"])) {
+        $user->updateUser();
+    }
+    if (isset($_POST["update_password"])) {
+        $user->updatePassword();
+    }
+    if (isset($_POST["update_manager"])) {
+        $user->updateManager();
     }
 }
 
@@ -145,7 +154,175 @@ class UserController
         }
         exit();
         }
+
+        public function updateUser()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+ 
+        $nombre         = trim($_POST["nombre"]         ?? '');
+        $apellidos      = trim($_POST["apellidos"]      ?? '');
+        $nombre_usuario = trim($_POST["nombre_usuario"] ?? '');
+        $email          = trim($_POST["email"]          ?? '');
+ 
+        if (empty($nombre) || empty($apellidos) || empty($nombre_usuario) || empty($email)) {
+            $_SESSION['profile_error'] = "Por favor, completa todos los campos.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['profile_error'] = "El formato del email no es válido.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $stmtCheck = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
+        $stmtCheck->execute([$email, $_SESSION['user_id']]);
+        if ($stmtCheck->fetch()) {
+            $_SESSION['profile_error'] = "Ese email ya está en uso por otra cuenta.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $stmtCheck2 = $this->conn->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? AND id != ?");
+        $stmtCheck2->execute([$nombre_usuario, $_SESSION['user_id']]);
+        if ($stmtCheck2->fetch()) {
+            $_SESSION['profile_error'] = "Ese nombre de usuario ya está en uso.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $sql  = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$nombre, $apellidos, $nombre_usuario, $email, $_SESSION['user_id']]);
+ 
+        $_SESSION['username'] = $nombre_usuario;
+ 
+        $_SESSION['profile_success'] = "Datos actualizados correctamente.";
+        header('Location: ../View/HTML/Pages/Profile.php');
+        exit();
+    }
     
+    public function updatePassword()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+ 
+        $current  = $_POST["current_password"]  ?? '';
+        $new      = $_POST["new_password"]       ?? '';
+        $confirm  = $_POST["confirm_password"]   ?? '';
+ 
+        if (empty($current) || empty($new) || empty($confirm)) {
+            $_SESSION['password_error'] = "Por favor, completa todos los campos.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        if ($new !== $confirm) {
+            $_SESSION['password_error'] = "Las contraseñas nuevas no coinciden.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $stmt = $this->conn->prepare("SELECT password_hash FROM usuarios WHERE id = ?");
+        $stmt->execute([$_SESSION['user_id']]);
+        $userData = $stmt->fetch();
+ 
+        if (!$userData || $current !== $userData['password_hash']) {
+            $_SESSION['password_error'] = "La contraseña actual es incorrecta.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $sqlUpdate = "UPDATE usuarios SET password_hash = ? WHERE id = ?";
+        $stmtUp    = $this->conn->prepare($sqlUpdate);
+        $stmtUp->execute([$new, $_SESSION['user_id']]);
+ 
+        $_SESSION['password_success'] = "Contraseña actualizada correctamente.";
+        header('Location: ../View/HTML/Pages/Profile.php');
+        exit();
+    }
+
+    public function updateManager()
+    {
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'manager') {
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+ 
+        $nombre         = trim($_POST["nombre"]         ?? '');
+        $apellidos      = trim($_POST["apellidos"]      ?? '');
+        $nombre_usuario = trim($_POST["nombre_usuario"] ?? '');
+        $email          = trim($_POST["email"]          ?? '');
+        $entidad        = trim($_POST["entidad"]        ?? '');
+        $telefono       = trim($_POST["telefono"]       ?? '');
+ 
+        if (empty($nombre) || empty($apellidos) || empty($nombre_usuario) || empty($email)) {
+            $_SESSION['profile_error'] = "Por favor, completa los campos obligatorios.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['profile_error'] = "El formato del email no es válido.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $stmtCheck = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
+        $stmtCheck->execute([$email, $_SESSION['user_id']]);
+        if ($stmtCheck->fetch()) {
+            $_SESSION['profile_error'] = "Ese email ya está en uso por otra cuenta.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $stmtCheck2 = $this->conn->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? AND id != ?");
+        $stmtCheck2->execute([$nombre_usuario, $_SESSION['user_id']]);
+        if ($stmtCheck2->fetch()) {
+            $_SESSION['profile_error'] = "Ese nombre de usuario ya está en uso.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+ 
+        $foto_perfil = null;
+        if (!empty($_FILES['foto_perfil']['tmp_name'])) {
+            $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            $mime    = mime_content_type($_FILES['foto_perfil']['tmp_name']);
+ 
+            if (!in_array($mime, $allowed)) {
+                $_SESSION['profile_error'] = "La foto debe ser una imagen (JPG, PNG, GIF o WEBP).";
+                header('Location: ../View/HTML/Pages/Profile.php');
+                exit();
+            }
+ 
+            $ext      = pathinfo($_FILES['foto_perfil']['name'], PATHINFO_EXTENSION);
+            $filename = 'profile_' . $_SESSION['user_id'] . '_' . time() . '.' . $ext;
+            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "../../../Controler/profileImages/" . $filename);
+            $foto_perfil = $filename;
+        }
+ 
+        if ($foto_perfil) {
+            $sql  = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ?, entidad = ?, telefono = ?, foto_perfil = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$nombre, $apellidos, $nombre_usuario, $email, $entidad, $telefono, $foto_perfil, $_SESSION['user_id']]);
+        } else {
+            $sql  = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ?, entidad = ?, telefono = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$nombre, $apellidos, $nombre_usuario, $email, $entidad, $telefono, $_SESSION['user_id']]);
+        }
+ 
+        $_SESSION['username'] = $nombre_usuario;
+ 
+        $_SESSION['profile_success'] = "Datos actualizados correctamente.";
+        header('Location: ../View/HTML/Pages/Profile.php');
+        exit();
+    }
 
     public function __destruct()
     {

@@ -5,7 +5,7 @@ body, html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f4f4f4;
 }
-
+ 
 .header {
     display: flex;
     justify-content: space-between;
@@ -14,12 +14,12 @@ body, html {
     padding: 10px 40px;
     height: 70px;
 }
-
+ 
 .logo_web img {
     height: 120px;
 }
-
-.boton_header input[type="button"] {
+ 
+.boton_header button {
     background-color: white;
     color: #045694;
     border: none;
@@ -28,13 +28,13 @@ body, html {
     cursor: pointer;
     font-weight: bold;
 }
-
+ 
 .fondo {
-    background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
-    background-attachment: fixed; 
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -42,19 +42,19 @@ body, html {
     position: relative;
     min-height: calc(100vh - 70px);
 }
-
+ 
 .recuadro {
     width: 90%;
     max-width: 500px;
     margin: 40px auto 20px;
     background-color: white;
-    padding: 25px 30px;  
+    padding: 25px 30px;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     box-sizing: border-box;
 }
-
+ 
 .titulo_mi_cuenta h3 {
     font-size: 22px;
     margin-bottom: 20px;
@@ -63,7 +63,7 @@ body, html {
     display: inline-block;
     padding-bottom: 5px;
 }
-
+ 
 .logo_usuario img {
     width: 90px;
     height: 90px;
@@ -71,7 +71,7 @@ body, html {
     margin-bottom: 15px;
     object-fit: cover;
 }
-
+ 
 .titulo_mis_datos h4 {
     text-align: left;
     color: black;
@@ -79,7 +79,34 @@ body, html {
     margin-bottom: 15px;
     margin-top: 10px;
 }
-
+ 
+.titulo_password {
+    margin-top: 28px;
+}
+ 
+.msg {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    text-align: left;
+}
+ 
+.msg--error {
+    background-color: #fdecea;
+    color: #c0392b;
+    border: 1px solid #e74c3c;
+}
+ 
+.msg--success {
+    background-color: #eafaf1;
+    color: #1e8449;
+    border: 1px solid #27ae60;
+}
+ 
 .recuadro label {
     display: block;
     text-align: left;
@@ -88,8 +115,10 @@ body, html {
     font-size: 14px;
     width: 100%;
 }
-
-.recuadro input[type="text"] {
+ 
+.recuadro input[type="text"],
+.recuadro input[type="email"],
+.recuadro input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 12px;
@@ -98,7 +127,42 @@ body, html {
     box-sizing: border-box;
     background-color: #fafafa;
 }
-
+ 
+.input-file {
+    width: 100%;
+    padding: 7px 0;
+    margin-bottom: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+ 
+.input-file-hint {
+    text-align: left;
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 12px 0;
+}
+ 
+.btn-guardar {
+    width: 100%;
+    padding: 11px;
+    background-color: #045694;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    transition: background 0.3s;
+}
+ 
+.btn-guardar:hover {
+    background-color: #034a7e;
+}
+ 
 .botones {
     width: 90%;
     max-width: 500px;
@@ -107,7 +171,7 @@ body, html {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
-
+ 
 .botones input[type="button"] {
     background-color: #69B3C5;
     color: white;
@@ -117,64 +181,63 @@ body, html {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    width: 100%;
 }
-
+ 
 .botones input[type="button"]:hover {
     background-color: #58a0b0;
 }
-
+ 
 .foot {
     background-color: #045694;
     padding: 40px 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    color: white; 
-    justify-items: center; 
+    color: white;
+    justify-items: center;
     align-items: start;
     text-align: center;
 }
-
+ 
 .foot a {
-    color: white;           
+    color: white;
     text-decoration: none;
 }
-
+ 
 .foot div {
     line-height: 2.0;
 }
-
+ 
 .foot strong {
     display: inline-block;
     margin-bottom: 10px;
     font-size: 1.1em;
 }
-
-/* tablet */
+ 
 @media screen and (max-width: 768px) {
     .header {
         padding: 10px 20px;
     }
-
+ 
     .logo_web img {
         height: 80px;
     }
-
+ 
     .foot {
         grid-template-columns: 1fr;
     }
-
+ 
     .botones {
         grid-template-columns: 1fr;
     }
 }
-
-/* movil */
+ 
 @media screen and (max-width: 480px) {
     .recuadro {
         padding: 20px 15px;
     }
-
+ 
     .titulo_mi_cuenta h3 {
         font-size: 18px;
     }

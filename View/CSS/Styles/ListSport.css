@@ -19,7 +19,16 @@ html {
     height: 120px;
 }
 
-.boton_header input[type="button"] {
+.boton_header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.boton_header input[type="button"],
+.boton_header button {
     background-color: white;
     color: #045694;
     border: none;
@@ -27,6 +36,7 @@ html {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .titulo_todos_deportes {
