@@ -16,29 +16,30 @@ if (!isset($_SESSION['user_id'])) {
     <title>Eventos Paddle</title>
 </head>
 <body>
-    <header>
-        <div class="header_web">
-            <div class="logo">
-
+    <div class="header_web">
+            <div class="logo_web">
             <?php if ($_SESSION['rol'] === 'manager'): ?>
                 <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
             <?php else: ?>
                 <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
             <?php endif; ?>
+            </div> 
+            
+            <div class="nav_header">
+                <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
+                <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
+                <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+            </div>
 
-            </div>   
-            <div class="profile_but">
-                
+            <div class="boton_header">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <form method="POST" action="../../../Controler/UserController.php">
                         <button type="submit" name="logout">Cerrar sesión</button>
                     </form>
                 <?php endif; ?>
-
                 <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
             </div>
         </div>        
-    </header>
  
     <div class="menu_events">
         <div class="titleEventF">
