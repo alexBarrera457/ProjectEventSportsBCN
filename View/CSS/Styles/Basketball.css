@@ -13,12 +13,21 @@ body, html {
     padding: 10px 40px;
     height: 70px;
 }
-
+ 
 .logo img {
     height: 120px; 
 }
 
-.profile_but input[type="button"] {
+.profile_but {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile_but input[type="button"],
+.profile_but button {
     background-color: white;
     color: #045694;
     border: none;
@@ -26,8 +35,8 @@ body, html {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    white-space: nowrap;
 }
-
 .menu_events {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -24,10 +24,9 @@ if (!isset($_SESSION['user_id'])) {
         <?php else: ?>
             <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
         <?php endif; ?>
-        
+            
       </div>
       <div class="boton_header">
-        <h4>
             
             <?php if (isset($_SESSION['user_id'])): ?>
                 <form method="POST" action="../../../Controler/userControler.php">
@@ -36,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
             <?php endif; ?>
 
           <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta" /></a>
-        </h4>
+        
       </div>
     </div>
     <div class="titulo_todos_deportes">
