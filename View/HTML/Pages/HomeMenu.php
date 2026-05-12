@@ -13,24 +13,33 @@ session_start();
 </head>
 <body>
  
-    <header>
-        <div class="header_web">
-            <div class="logo">
-                <img src="../../Assets/Logo1.png" alt="Logo">
-            </div>
-            <div class="but">
+    <div class="header">
+      <div class="logo_web">
+        <?php if ($_SESSION['rol'] === 'manager'): ?>
+          <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+        <?php else: ?>
+          <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
+        <?php endif; ?>
+      </div>
 
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <form method="POST" action="../../../Controler/userControler.php">
-                    <button type="submit" name="logout">Cerrar sesión</button>
-                </form>
-            <?php endif; ?>
+      <div class="nav_header">
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
+            <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
+            <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+        <?php endif; ?>
+    </div>
 
-                <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
-            </div>
-        </div>        
-    </header>
- 
+      <div class="boton_header">
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <form method="POST" action="../../../Controler/userControler.php">
+            <button type="submit" name="logout">Cerrar sesión</button>
+          </form>
+        <?php endif; ?>
+        <a href="../../HTML/Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
+      </div>
+    </div>
+
     <div class="lab1">
         <div class="title1">
             <h1>¿Quieres publicar tu evento?</h1>
