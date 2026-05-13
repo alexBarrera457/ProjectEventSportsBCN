@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST["logout"])) {
         $user->logout();
     }
-    if (isset($_POST["register"])) {    
+    if (isset($_POST["register"])) {
         $user->register();
     }
-     if (isset($_POST["update_user"])) {
+    if (isset($_POST["update_user"])) {
         $user->updateUser();
     }
     if (isset($_POST["update_password"])) {
@@ -45,90 +45,77 @@ class UserController
     }
 
     public function login()
-{
-    $user     = $_POST["user"];
-    $password = $_POST["password"];
+    {
+        $user     = $_POST["user"];
+        $password = $_POST["password"];
 
-    // Campos vacíos
-    if (empty($user) || empty($password)) {
-        $_SESSION['login_error'] = "Por favor, completa todos los campos.";
-        header('Location: ../View/HTML/Pages/Login.php');
-        exit();
-    }
-
-    $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([$user]);
-    $userData = $stmt->fetch();
-
-    if ($userData) {
-        if ($password === $userData['password_hash']) {
-            session_regenerate_id(true);
-            $_SESSION['user_id']  = $userData['id'];
-            $_SESSION['username'] = $userData['nombre_usuario'];
-            $_SESSION['rol']      = $userData['rol'];
-            header('Location: ../View/HTML/Pages/Profile.php');
-            exit();
-        } else {
-            $_SESSION['login_error'] = "Contraseña incorrecta.";
+        if (empty($user) || empty($password)) {
+            $_SESSION['login_error'] = "Por favor, completa todos los campos.";
             header('Location: ../View/HTML/Pages/Login.php');
             exit();
         }
-    } else {
-        $_SESSION['login_error'] = "El usuario no existe.";
+
+        $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user]);
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($userData) {
+            if (password_verify($password, $userData['password_hash'])) {
+                session_regenerate_id(true);
+                $_SESSION['user_id']  = $userData['id'];
+                $_SESSION['username'] = $userData['nombre_usuario'];
+                $_SESSION['rol']      = $userData['rol'];
+                header('Location: ../View/HTML/Pages/Profile.php');
+                exit();
+            } else {
+                $_SESSION['login_error'] = "Contraseña incorrecta.";
+                header('Location: ../View/HTML/Pages/Login.php');
+                exit();
+            }
+        } else {
+            $_SESSION['login_error'] = "El usuario no existe.";
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+    }
+
+
+    public function logout()
+    {
+
+        session_unset();
+        session_destroy();
         header('Location: ../View/HTML/Pages/Login.php');
         exit();
     }
-}
 
-    public function logout() {
+    public function register()
+    {
 
-        session_unset();  
-        session_destroy();  
-        header('Location: ../View/HTML/Pages/Login.php');
-        exit();
-        
-    }
-
-    public function register() {
-
-        $name = $_POST["Name"];
-        $surname = $_POST["Surname"];
-        $user = $_POST["User"];
-        $email = $_POST["Email"];
-        $passwd = $_POST["Passwd"];
+        $name     = $_POST["Name"];
+        $surname  = $_POST["Surname"];
+        $user     = $_POST["User"];
+        $email    = $_POST["Email"];
+        $passwd   = $_POST["Passwd"];
         $repasswd = $_POST["Repasswd"];
-        $rol = $_POST["rol"];
+        $rol      = $_POST["rol"];
 
-        //campos extra manager
-        $entidad = $_POST["Entidad"] ?? null;
+        $entidad  = $_POST["Entidad"] ?? null;
         $telefono = $_POST["Telefono"] ?? null;
 
-        // Campos vacíos
         if (empty($name) || empty($surname) || empty($user) || empty($email) || empty($passwd) || empty($repasswd)) {
             $_SESSION['register_error'] = "Por favor, completa todos los campos.";
-            
-            if ($rol === 'manager') {
-                header('Location: ../View/HTML/Pages/SingUpManager.php');
-            } else {
-                header('Location: ../View/HTML/Pages/SingUp.php');
-            }
+            header('Location: ' . ($rol === 'manager' ? '../View/HTML/Pages/SingUpManager.php' : '../View/HTML/Pages/SingUp.php'));
             exit();
         }
 
-        //Contraseñas no coinciden
         if ($passwd !== $repasswd) {
             $_SESSION['register_error'] = "Las contraseñas no coinciden.";
-
-            if ($rol === 'manager') {
-                header('Location: ../View/HTML/Pages/SingUpManager.php');
-            } else {
-                header('Location: ../View/HTML/Pages/SingUp.php');
-            }
+            header('Location: ' . ($rol === 'manager' ? '../View/HTML/Pages/SingUpManager.php' : '../View/HTML/Pages/SingUp.php'));
             exit();
         }
 
-        // Subida de imagen solo manager
         $foto_perfil = null;
         if ($rol === 'manager' && !empty($_FILES['foto_perfil']['tmp_name'])) {
             $filename = $_FILES['foto_perfil']['name'];
@@ -136,49 +123,50 @@ class UserController
             $foto_perfil = $filename;
         }
 
-        // Guardar en base de datos
-        $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono, foto_perfil) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $hash = password_hash($passwd, PASSWORD_DEFAULT);
+
+        $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono, foto_perfil)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono, $foto_perfil]);
 
-
-        $_SESSION['user_id']  = $this->conn->lastInsertId();
-        $_SESSION['username'] = $user;
-        $_SESSION['rol']      = $rol;
-
-        if ($rol === 'manager') {
-            header('Location: ../View/HTML/Pages/HomeMenuManager.php');
+        if ($stmt->execute([$name, $surname, $user, $email, $hash, $rol, $entidad, $telefono, $foto_perfil])) {
+            $_SESSION['user_id']  = $this->conn->lastInsertId();
+            $_SESSION['username'] = $user;
+            $_SESSION['rol']      = $rol;
+            header('Location: ' . ($rol === 'manager' ? '../View/HTML/Pages/HomeMenuManager.php' : '../View/HTML/Pages/HomeMenu.php'));
+            exit();
         } else {
-            header('Location: ../View/HTML/Pages/HomeMenu.php');
+            $_SESSION['register_error'] = "Error al registrar.";
+            header('Location: ' . ($rol === 'manager' ? '../View/HTML/Pages/SingUpManager.php' : '../View/HTML/Pages/SingUp.php'));
+            exit();
         }
-        exit();
-        }
+    }
 
-        public function updateUser()
+
+    public function updateUser()
     {
         if (!isset($_SESSION['user_id'])) {
             header('Location: ../View/HTML/Pages/Login.php');
             exit();
         }
- 
+
         $nombre         = trim($_POST["nombre"]         ?? '');
         $apellidos      = trim($_POST["apellidos"]      ?? '');
         $nombre_usuario = trim($_POST["nombre_usuario"] ?? '');
         $email          = trim($_POST["email"]          ?? '');
- 
+
         if (empty($nombre) || empty($apellidos) || empty($nombre_usuario) || empty($email)) {
             $_SESSION['profile_error'] = "Por favor, completa todos los campos.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['profile_error'] = "El formato del email no es válido.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $stmtCheck = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
         $stmtCheck->execute([$email, $_SESSION['user_id']]);
         if ($stmtCheck->fetch()) {
@@ -186,7 +174,7 @@ class UserController
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $stmtCheck2 = $this->conn->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? AND id != ?");
         $stmtCheck2->execute([$nombre_usuario, $_SESSION['user_id']]);
         if ($stmtCheck2->fetch()) {
@@ -194,55 +182,55 @@ class UserController
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $sql  = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$nombre, $apellidos, $nombre_usuario, $email, $_SESSION['user_id']]);
- 
+
         $_SESSION['username'] = $nombre_usuario;
- 
+
         $_SESSION['profile_success'] = "Datos actualizados correctamente.";
         header('Location: ../View/HTML/Pages/Profile.php');
         exit();
     }
-    
+
     public function updatePassword()
     {
         if (!isset($_SESSION['user_id'])) {
             header('Location: ../View/HTML/Pages/Login.php');
             exit();
         }
- 
+
         $current  = $_POST["current_password"]  ?? '';
         $new      = $_POST["new_password"]       ?? '';
         $confirm  = $_POST["confirm_password"]   ?? '';
- 
+
         if (empty($current) || empty($new) || empty($confirm)) {
             $_SESSION['password_error'] = "Por favor, completa todos los campos.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         if ($new !== $confirm) {
             $_SESSION['password_error'] = "Las contraseñas nuevas no coinciden.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $stmt = $this->conn->prepare("SELECT password_hash FROM usuarios WHERE id = ?");
         $stmt->execute([$_SESSION['user_id']]);
         $userData = $stmt->fetch();
- 
-        if (!$userData || $current !== $userData['password_hash']) {
+
+        if (!$userData || !password_verify($current, $userData['password_hash'])) {
             $_SESSION['password_error'] = "La contraseña actual es incorrecta.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $sqlUpdate = "UPDATE usuarios SET password_hash = ? WHERE id = ?";
         $stmtUp    = $this->conn->prepare($sqlUpdate);
-        $stmtUp->execute([$new, $_SESSION['user_id']]);
- 
+        $stmtUp->execute([password_hash($new, PASSWORD_DEFAULT), $_SESSION['user_id']]);
+
         $_SESSION['password_success'] = "Contraseña actualizada correctamente.";
         header('Location: ../View/HTML/Pages/Profile.php');
         exit();
@@ -254,26 +242,26 @@ class UserController
             header('Location: ../View/HTML/Pages/Login.php');
             exit();
         }
- 
+
         $nombre         = trim($_POST["nombre"]         ?? '');
         $apellidos      = trim($_POST["apellidos"]      ?? '');
         $nombre_usuario = trim($_POST["nombre_usuario"] ?? '');
         $email          = trim($_POST["email"]          ?? '');
         $entidad        = trim($_POST["entidad"]        ?? '');
         $telefono       = trim($_POST["telefono"]       ?? '');
- 
+
         if (empty($nombre) || empty($apellidos) || empty($nombre_usuario) || empty($email)) {
             $_SESSION['profile_error'] = "Por favor, completa los campos obligatorios.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['profile_error'] = "El formato del email no es válido.";
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $stmtCheck = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
         $stmtCheck->execute([$email, $_SESSION['user_id']]);
         if ($stmtCheck->fetch()) {
@@ -281,7 +269,7 @@ class UserController
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $stmtCheck2 = $this->conn->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? AND id != ?");
         $stmtCheck2->execute([$nombre_usuario, $_SESSION['user_id']]);
         if ($stmtCheck2->fetch()) {
@@ -289,24 +277,24 @@ class UserController
             header('Location: ../View/HTML/Pages/Profile.php');
             exit();
         }
- 
+
         $foto_perfil = null;
         if (!empty($_FILES['foto_perfil']['tmp_name'])) {
             $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             $mime    = mime_content_type($_FILES['foto_perfil']['tmp_name']);
- 
+
             if (!in_array($mime, $allowed)) {
                 $_SESSION['profile_error'] = "La foto debe ser una imagen (JPG, PNG, GIF o WEBP).";
                 header('Location: ../View/HTML/Pages/Profile.php');
                 exit();
             }
- 
+
             $ext      = pathinfo($_FILES['foto_perfil']['name'], PATHINFO_EXTENSION);
             $filename = 'profile_' . $_SESSION['user_id'] . '_' . time() . '.' . $ext;
             move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "../../../Controler/profileImages/" . $filename);
             $foto_perfil = $filename;
         }
- 
+
         if ($foto_perfil) {
             $sql  = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ?, entidad = ?, telefono = ?, foto_perfil = ? WHERE id = ?";
             $stmt = $this->conn->prepare($sql);
@@ -316,9 +304,9 @@ class UserController
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$nombre, $apellidos, $nombre_usuario, $email, $entidad, $telefono, $_SESSION['user_id']]);
         }
- 
+
         $_SESSION['username'] = $nombre_usuario;
- 
+
         $_SESSION['profile_success'] = "Datos actualizados correctamente.";
         header('Location: ../View/HTML/Pages/Profile.php');
         exit();
@@ -328,5 +316,4 @@ class UserController
     {
         $this->conn = null;
     }
-
 }
