@@ -1,0 +1,175 @@
+[1mdiff --cc Controler/userControler.php[m
+[1mindex 604e979,eccedb2..0000000[m
+[1m--- a/Controler/userControler.php[m
+[1m+++ b/Controler/userControler.php[m
+[36m@@@ -45,42 -34,55 +45,86 @@@[m [mclass UserControlle[m
+      }[m
+  [m
+      public function login()[m
+[31m -    {[m
+[31m -        $user     = $_POST["user"];[m
+[31m -        $password = $_POST["password"];[m
+[32m +{[m
+[32m +    $user     = $_POST["user"];[m
+[32m +    $password = $_POST["password"];[m
+  [m
+[32m++<<<<<<< Updated upstream[m
+[32m +    // Campos vacíos[m
+[32m +    if (empty($user) || empty($password)) {[m
+[32m +        $_SESSION['login_error'] = "Por favor, completa todos los campos.";[m
+[32m +        header('Location: ../View/HTML/Pages/Login.php');[m
+[32m +        exit();[m
+[32m++=======[m
+[32m+         // Campos vacíos[m
+[32m+         if (empty($user) || empty($password)) {[m
+[32m+             $_SESSION['login_error'] = "Por favor, completa todos los campos.";[m
+[32m+             header('Location: ../View/HTML/Pages/Login.php');[m
+[32m+             exit();[m
+[32m+         }[m
+[32m+ [m
+[32m+         $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";[m
+[32m+         $stmt = $this->conn->prepare($sql);[m
+[32m+ [m
+[32m+         if (!$stmt) {[m
+[32m+             $_SESSION['login_error'] = "Error interno del servidor. Inténtalo más tarde.";[m
+[32m+             header('Location: ../View/HTML/Pages/Login.php');[m
+[32m+             exit();[m
+[32m+         }[m
+[32m+ [m
+[32m+         $stmt->bind_param("s", $user);[m
+[32m+         $stmt->execute();[m
+[32m+         $result = $stmt->get_result();[m
+[32m+ [m
+[32m+         if ($result->num_rows === 1) {[m
+[32m+             $userData = $result->fetch_assoc();[m
+[32m+ [m
+[32m+             if (password_verify($password,$userData['password_hash'])) {[m
+[32m+                 session_regenerate_id(true);[m
+[32m+                 $_SESSION['user_id']  = $userData['id'];[m
+[32m+                 $_SESSION['username'] = $userData['nombre_usuario'];[m
+[32m+                 $_SESSION['rol']      = $userData['rol'];[m
+[32m+                 header('Location: ../View/HTML/Pages/Profile.php');[m
+[32m+                 exit();[m
+[32m+             } else {[m
+[32m+                 $_SESSION['login_error'] = "Contraseña incorrecta.";[m
+[32m+                 header('Location: ../View/HTML/Pages/Login.php');[m
+[32m+                 exit();[m
+[32m+             }[m
+[32m+ [m
+[32m+         } else {[m
+[32m+             $_SESSION['login_error'] = "El usuario no existe.";[m
+[32m+             header('Location: ../View/HTML/Pages/Login.php');[m
+[32m+             exit();[m
+[32m+         }[m
+[32m++>>>>>>> Stashed changes[m
+      }[m
+  [m
+[32m +    $sql  = "SELECT id, nombre_usuario, password_hash, rol FROM usuarios WHERE nombre_usuario = ?";[m
+[32m +    $stmt = $this->conn->prepare($sql);[m
+[32m +    $stmt->execute([$user]);[m
+[32m +    $userData = $stmt->fetch();[m
+[32m +[m
+[32m +    if ($userData) {[m
+[32m +        if ($password === $userData['password_hash']) {[m
+[32m +            session_regenerate_id(true);[m
+[32m +            $_SESSION['user_id']  = $userData['id'];[m
+[32m +            $_SESSION['username'] = $userData['nombre_usuario'];[m
+[32m +            $_SESSION['rol']      = $userData['rol'];[m
+[32m +            header('Location: ../View/HTML/Pages/Profile.php');[m
+[32m +            exit();[m
+[32m +        } else {[m
+[32m +            $_SESSION['login_error'] = "Contraseña incorrecta.";[m
+[32m +            header('Location: ../View/HTML/Pages/Login.php');[m
+[32m +            exit();[m
+[32m +        }[m
+[32m +    } else {[m
+[32m +        $_SESSION['login_error'] = "El usuario no existe.";[m
+[32m +        header('Location: ../View/HTML/Pages/Login.php');[m
+[32m +        exit();[m
+[32m +    }[m
+[32m +}[m
+[32m +[m
+      public function logout() {[m
+  [m
+          session_unset();  [m
+[36m@@@ -135,198 -137,42 +179,203 @@@[m
+              move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "profileImages/" . $filename);[m
+              $foto_perfil = $filename;[m
+          }[m
+[31m- [m
+[32m+         //hasheamos la contraseña[m
+[32m+         $hash = password_hash($passwd, PASSWORD_DEFAULT);[m
+          // Guardar en base de datos[m
+          $sql  = "INSERT INTO usuarios (nombre, apellidos, nombre_usuario, email, password_hash, rol, entidad, telefono, foto_perfil) [m
+[31m -                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";[m
+[32m +        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";[m
+          $stmt = $this->conn->prepare($sql);[m
+[32m++<<<<<<< Updated upstream[m
+[32m +        $stmt->execute([$name, $surname, $user, $email, $passwd, $rol, $entidad, $telefono, $foto_perfil]);[m
+[32m++=======[m
+[32m+         $stmt->bind_param("sssssssss", $name, $surname, $user, $email, $hash, $rol, $entidad, $telefono, $foto_perfil);[m
+[32m++>>>>>>> Stashed changes[m
+  [m
+[31m -        if ($stmt->execute()) {[m
+[31m -            $_SESSION['user_id']  = $stmt->insert_id;[m
+[31m -            $_SESSION['username'] = $user;[m
+[31m -            $_SESSION['rol']      = $rol;[m
+  [m
+[31m -            if ($rol === 'manager') {[m
+[31m -                header('Location: ../View/HTML/Pages/HomeMenuManager.php');[m
+[31m -            } else {[m
+[31m -                header('Location: ../View/HTML/Pages/HomeMenu.php');[m
+[31m -            }[m
+[31m -            exit();[m
+[32m +        $_SESSION['user_id']  = $this->conn->lastInsertId();[m
+[32m +        $_SESSION['username'] = $user;[m
+[32m +        $_SESSION['rol']      = $rol;[m
+  [m
+[32m +        if ($rol === 'manager') {[m
+[32m +            header('Location: ../View/HTML/Pages/HomeMenuManager.php');[m
+          } else {[m
+[31m -            $_SESSION['register_error'] = "Error al registrar: " . $stmt->error;[m
+[31m -            [m
+[31m -            if ($rol === 'manager') {[m
+[31m -                header('Location: ../View/HTML/Pages/SingUpManager.php');[m
+[31m -            } else {[m
+[31m -                header('Location: ../View/HTML/Pages/SingUp.php');[m
+[31m -            }[m
+[32m +            header('Location: ../View/HTML/Pages/HomeMenu.php');[m
+[32m +        }[m
+[32m +        exit();[m
+[32m +        }[m
+[32m +[m
+[32m +        public function updateUser()[m
+[32m +    {[m
+[32m +        if (!isset($_SESSION['user_id'])) {[m
+[32m +            header('Location: ../View/HTML/Pages/Login.php');[m
+[32m +            exit();[m
+[32m +        }[m
+[32m + [m
+[32m +        $nombre         = trim($_POST["nombre"]         ?? '');[m
+[32m +        $apellidos      = trim($_POST["apellidos"]      ?? '');[m
+[32m +        $nombre_usuario = trim($_POST["nombre_usuario"] ?? '');[m
+[32m +        $email          = trim($_POST["email"]          ?? '');[m
+[32m + [m
+[32m +        if (empty($nombre) || empty($apellidos) || empty($nombre_usuario) || empty($email)) {[m
+[32m +            $_SESSION['profile_error'] = "Por favor, completa todos los campos.";[m
+[32m +            header('Location: ../View/HTML/Pages/Profile.php');[m
+[32m +            exit();[m
+[32m +        }[m
+[32m + [m
+[32m +        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {[m
+[32m +            $_SESSION['profile_error'] = "El formato del email no es válido.";[m
+[32m +            header('Location: ../View/HTML/Pages/Profile.php');[m
+[32m +            exit();[m
+[32m +        }[m
+[32m + [m
+[32m +        $stmtCheck = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");[m
+[32m +        $stmtCheck->execute([$email, $_SESSION['user_id']]);[m
+[32m +        if ($stmtCheck->fetch()) {[m
+[32m +            $_SESSION['profile_error'] = "Ese email ya está en uso por otra cuenta.";[m
+[32m +            header('Location: ../View/HTML/Pages/Profile.php');[m
+              exit();[m
+          }[m
+[32m + [m
+[32m +        $stmtCheck2 = $this->conn->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? AND id != ?
