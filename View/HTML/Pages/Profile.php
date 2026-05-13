@@ -40,6 +40,13 @@ try {
           <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
         <?php endif; ?>
       </div>
+
+      <div class="nav_header">
+        <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
+        <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
+        <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+      </div>
+
       <div class="boton_header">
         <?php if (isset($_SESSION['user_id'])): ?>
           <form method="POST" action="../../../Controler/UserController.php">
@@ -194,7 +201,7 @@ try {
           />
  
           <label for="confirm_password">Confirmar nueva contraseña</label>
-          <input
+          <input 
             type="password"
             name="confirm_password"
             id="confirm_password"
@@ -203,13 +210,6 @@ try {
  
           <button type="submit" name="update_password" class="btn-guardar">Actualizar contraseña</button>
         </form>
-      </div>
- 
-      
-      <div class="botones">
-        <a href="../Pages/SignedEvents.php"><input type="button" value="Eventos apuntados" /></a>
-        <a href="../Pages/SavedEvents.php"><input type="button" value="Eventos guardados" /></a>
-        <a href="../Pages/FollowedSports.php"><input type="button" value="Deportes seguidos" /></a>
       </div>
     </div>
  

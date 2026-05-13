@@ -23,9 +23,15 @@ if (!isset($_SESSION['user_id'])) {
             <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
         <?php else: ?>
             <a href="HomeMenu.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
-        <?php endif; ?>
-            
+        <?php endif; ?> 
       </div>
+
+      <div class="nav_header">
+        <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
+        <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
+        <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+      </div>
+
       <div class="boton_header">
             
             <?php if (isset($_SESSION['user_id'])): ?>
