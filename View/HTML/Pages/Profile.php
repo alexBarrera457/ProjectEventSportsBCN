@@ -42,7 +42,7 @@ try {
       </div>
       <div class="boton_header">
         <?php if (isset($_SESSION['user_id'])): ?>
-          <form method="POST" action="../../../Controler/userControler.php">
+          <form method="POST" action="../../../Controler/UserController.php">
             <button type="submit" name="logout">Cerrar sesión</button>
           </form>
         <?php endif; ?>
@@ -92,7 +92,7 @@ try {
         </div>
  
         <?php
-          $formAction   = "../../../Controler/userControler.php";
+          $formAction   = "../../../Controler/UserController.php";
           $submitName   = ($_SESSION['rol'] === 'manager') ? 'update_manager' : 'update_user';
           $enctype      = ($_SESSION['rol'] === 'manager') ? 'enctype="multipart/form-data"' : '';
         ?>
@@ -176,7 +176,7 @@ try {
           <h4>Cambiar contraseña</h4>
         </div>
  
-        <form action="../../../Controler/userControler.php" method="POST">
+        <form action="../../../Controler/UserController.php" method="POST">
           <label for="current_password">Contraseña actual</label>
           <input
             type="password"

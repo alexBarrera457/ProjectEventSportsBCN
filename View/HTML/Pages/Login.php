@@ -33,7 +33,7 @@ unset($_SESSION['login_error']);
         </div>
         
         <div class="form">
-          <form action="../../../Controler/userControler.php" method="post">
+          <form action="../../../Controler/UserController.php" method="post">
             
             <label for="usuario">Usuario</label>
             <input type="text" name="user" id="usuario"/>
