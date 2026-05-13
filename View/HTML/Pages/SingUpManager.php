@@ -33,7 +33,7 @@ unset($_SESSION['register_error']);
             <h1>Registrarse como manager</h1>
         </div>
         <div class="botones_form">
-            <form action="../../../Controler/userControler.php" method="post" enctype="multipart/form-data">
+            <form action="../../../Controler/UserController.php" method="post" enctype="multipart/form-data">
                 Nombre <br><input type="text" name="Name"><br>
                 Apellidos <br><input type="text" name="Surname"><br>
                 Nombre de usuario <br><input type="text" name="User"><br>

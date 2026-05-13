@@ -34,7 +34,7 @@ unset($_SESSION['register_error']);
                 <h1>Registro Usuario</h1>
             </div>
             <div class="botones_form">
-                <form action="../../../Controler/userControler.php" method="post">
+                <form action="../../../Controler/UserController.php" method="post">
                     Nombre <br><input type="text" name="Name"><br>
                     Apellidos <br><input type="text" name="Surname"><br>
                     Nombre de usuario <br><input type="text" name="User"><br>

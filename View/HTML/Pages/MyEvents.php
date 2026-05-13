@@ -31,7 +31,7 @@ if ($_SESSION['rol'] !== 'manager') {
             <div class="profile_but">
                 
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <form method="POST" action="../../../Controler/userControler.php">
+                    <form method="POST" action="../../../Controler/UserController.php">
                         <button type="submit" name="logout">Cerrar sesión</button>
                     </form>
                 <?php endif; ?>
