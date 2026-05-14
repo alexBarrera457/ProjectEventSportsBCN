@@ -44,7 +44,18 @@ if (!isset($_SESSION['user_id'])) {
     <div class="menu_sports">
         <div class="titleFollowedSports">
             <h1>Deportes Seguidos</h1>
-        </div>
+    </div>
+
+    <div class="buscador">
+        <input type="text" id="inputBuscar" placeholder="Buscar evento...">
+        <input type="date" id="inputFecha">
+        <select id="selectOrden">
+            <option value="default">Ordenar</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+        </select>
+        <span id="contador">4 eventos</span>
+    </div>
    
         <div class="sport1">
             <img src="../../Assets/SportsIcon.png">

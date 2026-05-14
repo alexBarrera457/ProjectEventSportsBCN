@@ -4,6 +4,11 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: Login.php');     
   exit();
 }
+
+require_once '../../../Controler/EventController.php';
+$controller = new EventController();
+$eventos = $controller->getEventsByDeporte('Paddle');
+
 ?>
 
 <!DOCTYPE html>
@@ -44,31 +49,40 @@ if (!isset($_SESSION['user_id'])) {
     <div class="menu_events">
         <div class="titleEventF">
             <h1>Paddle</h1>
-        </div>
+    </div>
+
+    <div class="buscador">
+        <input type="text" id="inputBuscar" placeholder="Buscar evento...">
+        <input type="date" id="inputFecha">
+        <select id="selectOrden">
+            <option value="default">Ordenar</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+        </select>
+        <span id="contador">4 eventos</span>
+    </div>
    
-        <div class="event1">
-            <a href="../Pages/EventPaddle.php">
-            <img src="../../Assets/Paddle.jpeg">
-            <h4>Evento 1</h4></a>
-        </div>
-   
-        <div class="event2">
-            <a href="../Pages/EventPaddle.php">
-            <img src="../../Assets/Paddle.jpeg">
-            <h4>Evento 2</h4></a>
-        </div>
-   
-        <div class="event3">
-            <a href="../Pages/EventPaddle.php">
-            <img src="../../Assets/Paddle.jpeg">
-            <h4>Evento 3</h4></a>
-        </div>
-   
-        <div class="event4">
-            <a href="../Pages/EventPaddle.php">
-            <img src="../../Assets/Paddle.jpeg">
-            <h4>Evento 4</h4></a>          
-        </div>      
+        <?php if (empty($eventos)): ?>
+        <p class="no_events" style="grid-column:1/-1">No hay eventos de paddle disponibles.</p>
+        <?php else: ?>
+            <?php foreach ($eventos as $ev): ?>
+                <div class="event_card_sport"
+                    data-titulo="<?= htmlspecialchars(strtolower($ev['titulo'])) ?>"
+                    data-fecha="<?= htmlspecialchars($ev['fecha']) ?>">
+                    <a href="../Pages/EventDetail.php?id=<?= (int)$ev['id_evento'] ?>">
+                        <img src="/HTML/Controler/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
+                            alt="<?= htmlspecialchars($ev['titulo']) ?>"
+                            onerror="this.src='/HTML/Assets/Paddle.jpeg'">
+                        <h4><?= htmlspecialchars($ev['titulo']) ?></h4>
+                        <p class="event_meta_sport">
+                            <?= htmlspecialchars(date('d/m/Y', strtotime($ev['fecha']))) ?>
+                            · <?= htmlspecialchars(substr($ev['hora'], 0, 5)) ?>h
+                        </p>
+                        <p class="event_meta_sport"><?= htmlspecialchars($ev['ubicacion']) ?></p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>  
  
     <footer class="foot">
