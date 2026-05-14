@@ -10,18 +10,19 @@ unset($_SESSION['login_error']);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../CSS/Styles/Login.css" />
-    <link rel="stylesheet" href="../../CSS/Global/global.css" />
+    <link rel="stylesheet" href="../../../View/CSS/Global/global.css" />
+    <link rel="stylesheet" href="../../../View/CSS/Styles/HeaderFooter.css" />
+    <link rel="stylesheet" href="../../../View/CSS/Styles/LoginSingUpGlobal.css" />
     <title>Iniciar sesión</title>
   </head>
   <body>
-    <div class="header">
+    <div class="header_web">
       <div class="logo_web">
-        <img src="../../Assets/Logo1.png" alt="Logo"/>
+        <img src="../../../View/Assets/Logo1.png" alt="Logo" />
       </div>
       <div class="boton_header">
         
-          <a href="../../HTML/Pages/SingUp.php"><input type="button" value="Registrarse" alt="Registrarse"/> </a>
+          <a href="../../../View/HTML/Pages/SingUp.php"><input type="button" value="Registrarse" alt="Registrarse"/> </a>
        
       </div>
     </div>

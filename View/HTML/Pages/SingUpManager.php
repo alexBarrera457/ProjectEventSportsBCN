@@ -10,22 +10,21 @@ unset($_SESSION['register_error']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/Styles/SingUp.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css">
+    <link rel="stylesheet" href="../../CSS/Styles/HeaderFooter.css" />
+    <link rel="stylesheet" href="../../CSS/Styles/LoginSingUpGlobal.css" />
     <title>Registro Manager</title>
 </head>
 <body>
  
-    <header>
         <div class="header_web">
-            <div class="logo">
-                <img src="../../Assets/Logo1.png">
+            <div class="logo_web">
+                <img src="../../Assets/Logo1.png" alt="Logo">
             </div>
-            <div class="login_but">
+            <div class="boton_header">
                 <a href="../../HTML/Pages/Login.php"><input type="button" value="Iniciar sesión"></a>
             </div>
         </div>        
-    </header>
     
     <div class = "fondo">
         <div class="recuadro_registro">

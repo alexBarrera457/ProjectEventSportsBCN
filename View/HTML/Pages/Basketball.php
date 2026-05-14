@@ -12,8 +12,9 @@ $eventos = $controller->getEventsByDeporte('Baloncesto');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/Styles/Basketball.css" />
+    <link rel="stylesheet" href="../../CSS/Styles/SportsPagesGlobal.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css">
+    <link rel="stylesheet" href="../../CSS/Styles/HeaderFooter.css" />
     <title>Eventos Baloncesto</title>
 </head>
 <body>
@@ -71,7 +72,7 @@ $eventos = $controller->getEventsByDeporte('Baloncesto');
                     data-titulo="<?= htmlspecialchars(strtolower($ev['titulo'])) ?>"
                     data-fecha="<?= htmlspecialchars($ev['fecha']) ?>">
                     <a href="../Pages/EventDetail.php?id=<?= (int)$ev['id_evento'] ?>">
-                        <img src="/HTML/Controler/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
+                        <img src="/html/View/Assets/eventImages/...<?= htmlspecialchars($ev['foto']) ?>"
                             alt="<?= htmlspecialchars($ev['titulo']) ?>"
                             onerror="this.src='/HTML/Assets/Baloncesto.jpeg'">
                         <h4><?= htmlspecialchars($ev['titulo']) ?></h4>

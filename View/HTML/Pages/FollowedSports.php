@@ -11,8 +11,9 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/Styles/FollowedSports.css">
+    <link rel="stylesheet" href="../../CSS/Styles/SportsPagesGlobal.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css">
+    <link rel="stylesheet" href="../../CSS/Styles/HeaderFooter.css" />
     <title>Deportes Seguidos</title>
 </head>
 <body>

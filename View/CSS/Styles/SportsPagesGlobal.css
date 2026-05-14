@@ -1,0 +1,453 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* GRID EVENTOS Y DEPORTES */
+
+.menu_events,
+.menu_sports {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* TÍTULOS */
+
+.titleEventF,
+.titleSavedEvents,
+.titleSignedEvents,
+.titleFollowedSports {
+    grid-column: 1 / -1;
+}
+
+.titleEventF h1,
+.titleSavedEvents h1,
+.titleSignedEvents h1,
+.titleFollowedSports h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* CARDS EVENTOS */
+
+.event1, .event2, .event3, .event4,
+.sport1, .sport2, .sport3, .sport4,
+.event_card_sport {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.event1:hover, .event2:hover, .event3:hover, .event4:hover,
+.sport1:hover, .sport2:hover, .sport3:hover, .sport4:hover,
+.event_card_sport:hover {
+    transform: translateY(-5px);
+}
+
+.event1 a, .event2 a, .event3 a, .event4 a,
+.sport1 a, .sport2 a, .sport3 a, .sport4 a,
+.event_card_sport a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu_events img,
+.menu_sports img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.menu_events h4,
+.menu_sports h4 {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+}
+
+.event_meta_sport {
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.no_events {
+    color: #666;
+    font-style: italic;
+}
+
+/* BUSCADOR */
+
+.buscador {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.buscador input[type="text"],
+.buscador input[type="date"],
+.buscador select {
+    padding: 8px 12px;
+    border: 2px solid #cce0f5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.buscador input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+}
+
+.buscador input:focus,
+.buscador select:focus {
+    border-color: #045694;
+}
+
+#contador {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* DETALLE EVENTO  */
+
+.fondo {
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.event_detail_wrapper {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn_volver {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: rgba(4, 86, 148, 0.75);
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: fit-content;
+    transition: background-color 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.btn_volver:hover {
+    background-color: #045694;
+}
+
+.event_detail_card {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.event_detail_card img {
+    width: 280px;
+    min-width: 200px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.event_detail_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.event_detail_info h1 {
+    font-size: 1.8em;
+    color: #045694;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.event_detail_info p {
+    margin: 0;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.event_detail_info p strong {
+    color: #045694;
+}
+
+.event_detail_info a {
+    color: #045694;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.event_detail_info a:hover {
+    color: #023a6b;
+}
+
+.event_actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn_action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: 2px solid #045694;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn_saved {
+    background-color: white;
+    color: #045694;
+}
+
+.btn_saved:hover {
+    background-color: #e0eef7;
+}
+
+.btn_register {
+    background-color: #045694;
+    color: white;
+}
+
+.btn_register:hover {
+    background-color: #033f70;
+}
+
+/*  MIS EVENTOS (MANAGER)  */
+
+.menu_sport_events {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.titleMyEvents {
+    margin-bottom: 10px;
+}
+
+.titleMyEvents h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.crear_evento_btn {
+    margin: 15px 0;
+}
+
+.btn_crear {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn_crear:hover {
+    background-color: #033d6a;
+}
+
+.events_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.event_card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background-color: white;
+}
+
+.event_card:hover {
+    transform: translateY(-5px);
+}
+
+.event_card a {
+    text-decoration: none;
+    color: black;
+}
+
+.event_card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.event_card_info {
+    padding: 12px 15px;
+}
+
+.event_card_info h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.event_meta,
+.event_ubicacion,
+.event_plazas {
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.btn_eliminar {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.btn_eliminar:hover {
+    background-color: #96281b;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+    .events_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .titleMyEvents h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header_web {
+        padding: 10px 20px;
+    }
+
+    .logo_web img {
+        height: 80px;
+    }
+
+    .menu_events,
+    .menu_sports {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .titleEventF h1,
+    .titleSavedEvents h1,
+    .titleSignedEvents h1,
+    .titleFollowedSports h1 {
+        font-size: 2rem;
+    }
+
+    .foot {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .event_detail_card {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .event_detail_card img {
+        width: 100%;
+        height: 220px;
+        min-width: unset;
+    }
+
+    .event_detail_info h1 {
+        font-size: 1.4em;
+    }
+
+    .nav_header {
+        display: none;
+    }
+
+    .event_actions {
+        flex-direction: column;
+    }
+
+    .btn_action {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu_events h4,
+    .menu_sports h4 {
+        font-size: 1rem;
+    }
+}
