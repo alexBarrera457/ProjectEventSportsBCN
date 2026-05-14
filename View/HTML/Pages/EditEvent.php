@@ -40,8 +40,8 @@ if ($_SESSION['rol'] !== 'manager') {
 
             <div class="boton_header">
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <form method="POST" action="../../../Controler/userControler.php">
-                        <button type="submit" name="logout">Cerrar sesión</button>
+                    <form method="POST" action="../../../Controler/UserController.php">
+                        <button type="submit" name="slogout">Cerrar sesión</button>
                     </form>
                 <?php endif; ?>
                 <a href="../Pages/Profile.php"><input type="button" value="Mi cuenta"></a>
