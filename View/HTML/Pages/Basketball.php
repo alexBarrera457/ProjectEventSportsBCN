@@ -27,9 +27,11 @@ $eventos = $controller->getEventsByDeporte('Baloncesto');
             </div> 
             
             <div class="nav_header">
+            <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
                 <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
                 <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+            <?php endif; ?>
             </div>
 
             <div class="boton_header">
