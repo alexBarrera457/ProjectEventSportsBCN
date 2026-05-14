@@ -35,6 +35,9 @@ $eventos = $controller->getEventsByDeporte('Golf');
                 <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
                 <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
                 <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+                <?php if ($_SESSION['rol'] === 'manager'): ?>
+                    <a href="../Pages/MyEvents.php"><button type="button">Mis eventos</button></a>
+                <?php endif; ?>
             </div>
 
             <div class="boton_header">
