@@ -30,6 +30,9 @@ try {
     <link rel="stylesheet" href="../../CSS/Styles/Profile.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css" />
     <title>Perfil</title>
+    <script src="../JS/jquery-4.0.0.js"></script>
+    <script src="../JS/DeleteUser.js" defer></script>
+
   </head>
   <body>
     <div class="header">
@@ -210,6 +213,36 @@ try {
  
           <button type="submit" name="update_password" class="btn-guardar">Actualizar contraseña</button>
         </form>
+        
+        <br>
+        <div class="titulo_eliminar_cuenta">
+          <h4>Eliminar cuenta</h4>
+        </div>
+
+        <button type="button" name="delete_modal" class="btn-modal">Darse de baja</button>
+        
+        <div class="recuadro-modal">
+          <div class="modal-baja">
+            <h4>¿Estás seguro que quieres darte de baja?</h4>
+            <p>
+              Esta acción eliminará permanentemente tu cuenta, incluyendo todos los eventos y deportes guardados, 
+              así como tus eventos creados (en caso de ser mánager).
+            </p>
+            
+            <form action="../../../Controler/userControler.php" method="POST">
+              <label for="passwd-enun">
+                Si deseas continuar, por favor, introduce tu contraseña para confirmar:
+              </label>
+              <input type="password" name="password" id="passwd-baja" required/>
+
+              <div class="modal-botones">
+                <button type="button" id="cancel">Cancelar</button>
+                <button type="submit" name="delete_user" id="btn-baja">Confirmar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
       </div>
     </div>
  

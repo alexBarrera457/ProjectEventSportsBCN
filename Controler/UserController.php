@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST["update_manager"])) {
         $user->updateManager();
     }
+    if (isset($_POST["delete_user"])) {
+        $user->deleteUser();
+    }
 }
 
 class UserController
@@ -310,6 +313,41 @@ class UserController
         $_SESSION['profile_success'] = "Datos actualizados correctamente.";
         header('Location: ../View/HTML/Pages/Profile.php');
         exit();
+    }
+
+    public function deleteUser() {
+        
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/HTML/Pages/Login.php');
+            exit();
+        }
+
+        $password = $_POST['password'];
+
+        if(empty($password)) {
+            $_SESSION['profile_error'] = "Debes introducir una contraseña.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+
+        $stmt = $this->conn->prepare("SELECT password_hash FROM usuarios WHERE ID = ?");
+        $stmt->execute([$_SESSION['user_id']]);
+        $userData = $stmt->fetch();
+
+        if (!$userData || $password !== $userData['password_hash']) {
+            $_SESSION['profile_error'] = "Contraseña incorrecta.";
+            header('Location: ../View/HTML/Pages/Profile.php');
+            exit();
+        }
+
+        $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE ID = ?");
+        $stmt->execute([$_SESSION['user_id']]);
+
+        session_unset();  
+        session_destroy();  
+        header('Location: ../View/HTML/Pages/Login.php');
+        exit();
+
     }
 
     public function __destruct()
