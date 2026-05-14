@@ -229,7 +229,7 @@ try {
               así como tus eventos creados (en caso de ser mánager).
             </p>
             
-            <form action="../../../Controler/userControler.php" method="POST">
+            <form action="../../../Controler/userController.php" method="POST">
               <label for="passwd-enun">
                 Si deseas continuar, por favor, introduce tu contraseña para confirmar:
               </label>

@@ -334,19 +334,18 @@ class UserController
         $stmt->execute([$_SESSION['user_id']]);
         $userData = $stmt->fetch();
 
-        if (!$userData || $password !== $userData['password_hash']) {
-            $_SESSION['profile_error'] = "Contraseña incorrecta.";
-            header('Location: ../View/HTML/Pages/Profile.php');
+        if (password_verify($password, $userData['password_hash'])) {
+	        $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE ID = ?");
+            $stmt->execute([$_SESSION['user_id']]);
+            session_unset();  
+            session_destroy();  
+            header('Location: ../View/HTML/Pages/Login.php');
             exit();
+        } else {
+	        $_SESSION['profile_error'] = "Contraseña incorrecta.";
+	        header('Location: ../View/HTML/Pages/Profile.php');
+	        exit();
         }
-
-        $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE ID = ?");
-        $stmt->execute([$_SESSION['user_id']]);
-
-        session_unset();  
-        session_destroy();  
-        header('Location: ../View/HTML/Pages/Login.php');
-        exit();
 
     }
 
