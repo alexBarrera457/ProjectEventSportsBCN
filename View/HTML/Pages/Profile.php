@@ -48,6 +48,9 @@ try {
         <a href="../Pages/SignedEvents.php"><button type="button">Eventos apuntados</button></a>
         <a href="../Pages/SavedEvents.php"><button type="button">Eventos guardados</button></a>
         <a href="../Pages/FollowedSports.php"><button type="button">Deportes seguidos</button></a>
+        <?php if ($_SESSION['rol'] === 'manager'): ?>
+          <a href="../Pages/MyEvents.php"><button type="button">Mis eventos</button></a>
+        <?php endif; ?>
       </div>
 
       <div class="boton_header">
@@ -74,8 +77,7 @@ try {
           ?>
           <img src="<?= $fotoSrc ?>" alt="Foto perfil" />
         </div>
- 
-        <!-- ── Mensajes de feedback ── -->
+
         <?php if (!empty($_SESSION['profile_error'])): ?>
           <p class="msg msg--error"><?= htmlspecialchars($_SESSION['profile_error']) ?></p>
           <?php unset($_SESSION['profile_error']); ?>
@@ -96,7 +98,6 @@ try {
           <?php unset($_SESSION['password_success']); ?>
         <?php endif; ?>
  
-        <!-- ── Formulario datos personales ── -->
         <div class="titulo_mis_datos">
           <h4>Mis datos</h4>
         </div>
