@@ -122,7 +122,7 @@ class UserController
         $foto_perfil = null;
         if ($rol === 'manager' && !empty($_FILES['foto_perfil']['tmp_name'])) {
             $filename = $_FILES['foto_perfil']['name'];
-            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "profileImages/" . $filename);
+            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "../View/Assets/profileImages/" . $filename);
             $foto_perfil = $filename;
         }
 
@@ -294,7 +294,7 @@ class UserController
 
             $ext      = pathinfo($_FILES['foto_perfil']['name'], PATHINFO_EXTENSION);
             $filename = 'profile_' . $_SESSION['user_id'] . '_' . time() . '.' . $ext;
-            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "../../../Controler/profileImages/" . $filename);
+            move_uploaded_file($_FILES['foto_perfil']['tmp_name'], "../View/Assets/profileImages/" . $filename);
             $foto_perfil = $filename;
         }
 

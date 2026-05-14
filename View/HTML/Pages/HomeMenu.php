@@ -9,11 +9,12 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/Styles/HomeMenu.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css">
+    <link rel="stylesheet" href="../../CSS/Styles/HeaderFooter.css" />
     <title>Menú principal</title>
 </head>
 <body>
  
-    <div class="header">
+    <div class="header_web">
       <div class="logo_web">
         <?php if ($_SESSION['rol'] === 'manager'): ?>
           <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>

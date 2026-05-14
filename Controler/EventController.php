@@ -64,14 +64,14 @@ class EventController {
         if (!empty($_FILES['foto']['tmp_name'])) {
 
         
-            $uploadDir = "eventImages/";
+            $uploadDir = "../View/Assets/eventImages/";
                  
             if (!is_dir($uploadDir)) {         
                 mkdir($uploadDir, 0755, true);    
             }
 
             $filename = $_FILES['foto']['name'];
-            move_uploaded_file($_FILES['foto']['tmp_name'], "eventImages/" . $filename);
+            move_uploaded_file($_FILES['foto']['tmp_name'], "../View/Assets/eventImages/" . $filename);
             $foto = $filename;
         } else {
             $_SESSION['event_error'] = "La foto de portada es obligatoria.";

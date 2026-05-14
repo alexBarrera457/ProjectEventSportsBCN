@@ -5,66 +5,6 @@ body, html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.header_web {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #045694;
-    padding: 10px 40px;
-    height: 70px;
-}
-
-.logo_web img {
-    height: 120px;
-}
-
-.nav_header {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.nav_header a {
-    text-decoration: none;
-}
-
-.nav_header button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
-    transition: background 0.3s, color 0.3s;
-}
-
-.nav_header button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.boton_header {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.boton_header button,
-.boton_header input[type="button"] {
-    background-color: white;
-    color: #045694;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
 .fondo {
     background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
     background-size: cover; 
@@ -93,34 +33,6 @@ body, html {
 .event_edit_title h2 {
     font-size: 32px;
     margin-bottom: 40px;
-}
-
-
-.foot {
-    background-color: #045694;
-    padding: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    color: white; 
-    justify-items: center; 
-    align-items: start;
-    text-align: center;
-}
-
-.foot a {
-    color: white;           
-    text-decoration: none;
-}
-
-.foot div {
-    line-height: 2.0;
-}
-
-.foot strong {
-    display: inline-block;
-    margin-bottom: 10px;
-    font-size: 1.1em;
 }
 
 .event_edit_title h1 {

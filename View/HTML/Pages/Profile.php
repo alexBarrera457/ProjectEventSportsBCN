@@ -29,13 +29,14 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../CSS/Styles/Profile.css" />
     <link rel="stylesheet" href="../../CSS/Global/global.css" />
+    <link rel="stylesheet" href="../../CSS/Styles/HeaderFooter.css" />
     <title>Perfil</title>
-    <script src="../JS/jquery-4.0.0.js"></script>
-    <script src="../JS/DeleteUser.js" defer></script>
+    <script src="../../JS/jquery-4.0.0.js"></script>
+    <script src="../../JS/DeleteUser.js" defer></script>
 
   </head>
   <body>
-    <div class="header">
+    <div class="header_web">
       <div class="logo_web">
         <?php if ($_SESSION['rol'] === 'manager'): ?>
           <a href="HomeMenuManager.php"><img src="../../Assets/Logo1.png" alt="Logo"/></a>
@@ -72,7 +73,7 @@ try {
           <?php
             $foto = $userData['foto_perfil'] ?? null;
             $fotoSrc = ($foto && $_SESSION['rol'] === 'manager')
-              ? "../../../Controler/profileImages/" . htmlspecialchars($foto)
+              ? "../../Assets/profileImages/" . htmlspecialchars($foto)
               : "../../Assets/logo_usuario.png";
           ?>
           <img src="<?= $fotoSrc ?>" alt="Foto perfil" />
