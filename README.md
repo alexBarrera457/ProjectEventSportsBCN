@@ -274,7 +274,7 @@ sequenceDiagram
 ```
 EventSportsBCN/
 ├── Controller/
-│   └── userControler.php       # User authentication and registration
+│   └── UserController.php       # User authentication and registration
 ├── Model/
 │   └── Model.sql               # Database schema
 ├── View/
@@ -330,7 +330,7 @@ EventSportsBCN/
 
 ## 📝 Database Configuration
 
-Default configuration in `userControler.php`:
+Default configuration in `UserController.php`:
 - **Host**: localhost
 - **User**: root
 - **Password**: (empty)

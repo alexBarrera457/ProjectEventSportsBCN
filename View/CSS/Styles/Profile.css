@@ -111,6 +111,14 @@ body, html {
     margin-top: 28px;
 }
 
+.titulo_eliminar_cuenta h4 {
+    text-align: left;
+    color: black;
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
 .msg {
     width: 100%;
     padding: 10px 14px;
@@ -188,6 +196,96 @@ body, html {
 
 .btn-guardar:hover {
     background-color: #034a7e;
+}
+
+.btn-modal {
+    width: 100%;
+    padding: 11px;
+    background-color: #045694;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    transition: background 0.3s;
+}
+
+.btn-modal:hover {
+    background-color: #7e1a03;
+}
+
+
+.recuadro-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-items: center;
+}
+
+.modal-baja {
+    margin: 100px auto 20px;
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-baja input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+.modal-botones button[type="button"] {
+    width: 40%;
+    padding: 10px;
+    background-color: #045694;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    margin-right: 20px;
+    transition: background 0.3s;
+}
+
+.modal-botones button[type="button"]:hover {
+    background-color: #03385f;
+}
+
+.modal-botones button[type="submit"] {
+    width: 40%;
+    padding: 10px;
+    background-color: #7e1a03;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    margin-left: 20px;
+    transition: background 0.3s;
+}
+
+.modal-botones button[type="submit"]:hover {
+    background-color: #bc0505;
 }
 
 .foot {

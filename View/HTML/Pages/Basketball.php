@@ -34,7 +34,7 @@ $eventos = $controller->getEventsByDeporte('Baloncesto');
 
             <div class="boton_header">
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <form method="POST" action="../../../Controler/userControler.php">
+                    <form method="POST" action="../../../Controler/UserController.php">
                         <button type="submit" name="logout">Cerrar sesión</button>
                     </form>
                 <?php endif; ?>
