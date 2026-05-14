@@ -11,18 +11,18 @@ if ($_SESSION['rol'] !== 'manager') {
     header('Location: HomeMenu.php');
     exit();
 }
-?>
+?> 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/Styles/CreateEvent.css">
-    <link rel="stylesheet" href="../../CSS/Global/global.css">
-    <title>Crear evento</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../CSS/Styles/CreateEvent.css" />
+    <link rel="stylesheet" href="../../CSS/Global/global.css" />
+    <title>Publicar evento</title>
+  </head> 
+  <body>
     <div class="header_web">
             <div class="logo_web">
             <?php if ($_SESSION['rol'] === 'manager'): ?>
@@ -48,68 +48,97 @@ if ($_SESSION['rol'] !== 'manager') {
             </div>
         </div>        
 
-    <div class="menu_sport_events">
-        <div class="titleCreateEvent">
-            <h1>Selecciona que deporte del evento quieres crear</h1>
+  <div class="fondo">
+      <div class="recuadro">
+        <div class="event_edit_title">
+          <h1>Editor de eventos</h1>
         </div>
-   
-        <div class="football1">
-            <a href="EditEvent.php">
-                <img src="../../Assets/SportsIcon.png">
-                <h4>Fútbol</h4>
-            </a>           
+ 
+        <form method="POST" action="../../../Controler/EventController.php" enctype="multipart/form-data">
+
+        <div class="event_details">
+          <label>Título del evento</label>
+          <input type="text" name="nombre" required />
+          <br />
+
+          <label>Deporte</label>
+          <select name="deporte" required>
+            <option value="" disabled selected>Selecciona un deporte</option>
+            <option value="Fútbol">Fútbol</option>
+            <option value="Baloncesto">Baloncesto</option>
+            <option value="Tenis">Tenis</option>
+            <option value="Pádel">Pádel</option>
+            <option value="Golf">Golf</option>
+          </select>
+          <br />
+
+          <label>Fecha del evento</label>
+          <input type="date" name="fecha" required />
+          <br />
+
+          <label>Hora del evento</label>
+          <input type="time" name="hora" required />
+          <br />
+
+          <label>Num. participantes</label>
+          <input type="number" name="plazas_totales" min="1" required />
+          <br />
+
+          <label>Calle</label>
+          <input type="text" name="calle" required />
+          <br />
+
+          <label>Número</label>
+          <input type="text" name="numero" required />
+          <br />
+
+          <label>Código postal</label>
+          <input type="text" name="cp" maxlength="5" required />
+          <br />
+
+          <label>Enlace Google Maps</label>
+          <input type="url" name="google_maps" />
+          <br />
+
+          <label>Foto de portada</label>
+          <input type="file" name="foto" accept="image/*" required />
+          <br />
         </div>
-   
-        <div class="basketball2">           
-            <a href="EditEvent.php">
-                <img src="../../Assets/SportsIcon.png">
-                <h4>Baloncesto</h4>
-            </a>            
+
+        <div class="event_description">
+          <label>Descripción</label>
+          <input type="text" name="descripcion" />
         </div>
-   
-        <div class="tennis3">
-            <a href="EditEvent.php">
-                <img src="../../Assets/SportsIcon.png">
-                <h4>Tenis</h4>
-            </a>           
+
+        <div class="publish_button">
+          <input type="submit" name="create_event" value="Publicar" />
         </div>
-   
-        <div class="paddle4">
-            <a href="EditEvent.php">
-                <img src="../../Assets/SportsIcon.png">
-                <h4>Paddle</h4> 
-            </a>                    
-        </div>
-        
-        <div class="golf4">
-            <a href="EditEvent.php">
-                <img src="../../Assets/SportsIcon.png">
-                <h4>Golf</h4> 
-            </a>                    
-        </div>  
-    </div> 
-    
+
+      </form>
+      </div>
+    </div>
+
     <footer class="foot">
-        <div class="about_us">
-            <strong>Nosotros</strong><br>
-            <a href="">Contacto</a><br>
-            <a href="">Centro de Ayuda</a><br>
-            <a href="../Pages/AboutUs.php">Sobre nosotros</a>        
-        </div>
-        
-        <div class="legal">
-            <strong>Legal</strong><br>
-            <a href="">Aviso legal</a><br>
-            <a href="">Política de privacidad</a><br>
-            <a href="">Términos y condiciones</a>         
-        </div>
-       
-        <div class="follow">
-            <strong>Síguenos</strong><br>
-            Facebook<br>
-            Instagram<br>
-            X<br>
-        </div>
+      <div class="about_us">
+        <strong>Nosotros</strong><br />
+        <a href="">Contacto</a><br />
+        <a href="">Centro de Ayuda</a><br />
+        <a href="../Pages/AboutUs.php">Sobre nosotros</a>
+      </div>
+
+      <div class="legal">
+        <strong>Legal</strong><br />
+        <a href="">Aviso legal</a><br />
+        <a href="">Política de privacidad</a><br />
+        <a href="">Términos y condiciones</a>
+      </div>
+
+      <div class="follow">
+        <strong>Síguenos</strong><br />
+        Facebook <br />
+        Instagram<br />
+        X<br />
+      </div>
     </footer>
-</body>
+  </body>
 </html>

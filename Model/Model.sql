@@ -21,18 +21,22 @@ CREATE TABLE usuarios (
 
 -- Tabla de eventos deportivos
 CREATE TABLE eventos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    deporte VARCHAR(50) NOT NULL,
-    fecha DATE NOT NULL,
-    hora TIME NOT NULL,
-    ubicacion VARCHAR(150) NOT NULL,
-    plazas_totales INT NOT NULL,
-    plazas_disponibles INT NOT NULL,
-    id_manager INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_manager) REFERENCES usuarios(id)
+    id              INT AUTO_INCREMENT PRIMARY KEY,
+    manager_id      INT NOT NULL,
+    nombre          VARCHAR(255) NOT NULL,
+    deporte         ENUM('Fútbol','Baloncesto','Tenis','Pádel','Golf') NOT NULL,
+    descripcion     TEXT,
+    fecha           DATE NOT NULL,
+    hora            TIME NOT NULL,
+    plazas_totales  INT NOT NULL,
+    calle           VARCHAR(255) NOT NULL,
+    numero          VARCHAR(20) NOT NULL,
+    cp              CHAR(5) NOT NULL,
+    google_maps     VARCHAR(500),
+    foto            VARCHAR(300),
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (manager_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- Tabla de inscripciones (usuario se apunta a un evento)

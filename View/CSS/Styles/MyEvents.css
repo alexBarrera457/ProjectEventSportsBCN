@@ -1,6 +1,6 @@
 body, html {
     margin: 0;
-    padding: 0;
+    padding: 0; 
     min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -187,6 +187,117 @@ body, html {
     font-size: 0.9rem;
     color: #666;
     font-style: italic;
+}
+
+.crear_evento_btn {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -10px;
+}
+
+.btn_crear {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+}
+
+.btn_crear:hover {
+    background-color: #034a7e;
+}
+
+/* ── Grid dinámico de tarjetas ── */
+.events_grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* ── Tarjeta de evento ── */
+.event_card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.event_card:hover {
+    transform: translateY(-5px);
+}
+
+.event_card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.event_card_info {
+    padding: 14px 16px 8px;
+    flex: 1;
+}
+
+.event_card_info h4 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.event_meta {
+    margin: 0 0 4px;
+    font-size: 0.88rem;
+    color: #045694;
+    font-weight: bold;
+}
+
+.event_ubicacion,
+.event_plazas {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* ── Botón eliminar ── */
+.btn_eliminar {
+    width: 100%;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn_eliminar:hover {
+    background-color: #c0392b;
+}
+
+/* ── Sin eventos ── */
+.no_events {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    font-size: 1rem;
+    padding: 40px 0;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+    .events_grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* tablet */

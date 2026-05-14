@@ -184,6 +184,32 @@ body, html {
     font-style: italic;
 }
 
+.event_card_sport {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.event_card_sport:hover {
+    transform: translateY(-5px);
+}
+
+.event_card_sport a {
+    text-decoration: none;
+    color: black;
+}
+
+.event_meta_sport {
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.no_events {
+    color: #666;
+    font-style: italic;
+}
+
 /* tablet */
 @media screen and (max-width: 768px) {
     .header_web {

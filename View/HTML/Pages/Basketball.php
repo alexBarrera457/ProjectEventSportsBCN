@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+require_once '../../../Controler/EventController.php';
+$controller = new EventController();
+$eventos = $controller->getEventsByDeporte('Baloncesto');
+
 ?>
 
 <!DOCTYPE html>
@@ -53,30 +58,28 @@ session_start();
             <span id="contador">4 eventos</span>
         </div>
 
-        <div class="event1">
-            <a href="../Pages/EventBasketball.php">
-            <img src="../../Assets/Baloncesto.jpeg">
-            <h4>Evento 1</h4></a>
-        </div>
-   
-        <div class="event2">
-            <a href="../Pages/EventBasketball.php">
-            <img src="../../Assets/Baloncesto.jpeg">
-            <h4>Evento 2</h4></a>
-        </div>
-   
-        <div class="event3">
-            <a href="../Pages/EventBasketball.php">
-            <img src="../../Assets/Baloncesto.jpeg">
-            <h4>Evento 3</h4></a>
-        </div>
-   
-        <div class="event4">
-            <a href="../Pages/EventBasketball.php">
-            <img src="../../Assets/Baloncesto.jpeg">
-            <h4>Evento 4</h4></a>          
-        </div>      
-    </div>  
+        <?php if (empty($eventos)): ?>
+        <p class="no_events" style="grid-column:1/-1">No hay eventos de baloncesto disponibles.</p>
+        <?php else: ?>
+            <?php foreach ($eventos as $ev): ?>
+                <div class="event_card_sport"
+                    data-titulo="<?= htmlspecialchars(strtolower($ev['titulo'])) ?>"
+                    data-fecha="<?= htmlspecialchars($ev['fecha']) ?>">
+                    <a href="../Pages/EventDetail.php?id=<?= (int)$ev['id_evento'] ?>">
+                        <img src="/HTML/Controler/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
+                            alt="<?= htmlspecialchars($ev['titulo']) ?>"
+                            onerror="this.src='/HTML/Assets/Baloncesto.jpeg'">
+                        <h4><?= htmlspecialchars($ev['titulo']) ?></h4>
+                        <p class="event_meta_sport">
+                            <?= htmlspecialchars(date('d/m/Y', strtotime($ev['fecha']))) ?>
+                            · <?= htmlspecialchars(substr($ev['hora'], 0, 5)) ?>h
+                        </p>
+                        <p class="event_meta_sport"><?= htmlspecialchars($ev['ubicacion']) ?></p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
  
     <footer class="foot">
         <div class="about_us">

@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    min-height: 100%;
+    height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -65,64 +65,40 @@ body, html {
     white-space: nowrap;
 }
 
-.menu_sport_events {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 40px 20px;
-    font-family: 'Arial', sans-serif;
-    max-width: 1000px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-.titleCreateEvent {
-    grid-column: 1 / -1;
-}
-
-.titleCreateEvent h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
-}
-
-.football1, .basketball2, .tennis3, .paddle4 {
+.fondo {
+    background-image: url('../../Assets/Img_fondo_login_registro.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    min-height: 80vh;
     display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
 }
 
-.football1:hover, .basketball2:hover, .tennis3:hover, .paddle4:hover {
-    transform: translateY(-5px);
-}
-
-.football1 a, .basketball2 a, .tennis3 a, .paddle4 a {
-    text-decoration: none;
-    color: black;
-}
-
-.menu_sport_events img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+.recuadro {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
     border-radius: 15px;
-    display: block;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.menu_sport_events h4 {
-    margin-top: 15px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
     color: #333;
 }
+
+.event_edit_title h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
 
 .foot {
     background-color: #045694;
-    padding: 40px 20px;
+    padding: 40px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -147,34 +123,64 @@ body, html {
     font-size: 1.1em;
 }
 
-/* tablet */
-@media screen and (max-width: 768px) {
-    .header_web {
-        padding: 10px 20px;
-    }
-
-    .logo img {
-        height: 80px;
-    }
-
-    .menu_sport_events {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .titleCreateEvent h1 {
-        font-size: 2rem;
-    }
-
-    .foot {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
+.event_edit_title h1 {
+    font-size: 26px;
+    margin-bottom: 24px;
+    color: #045694;
+}
+ 
+.event_details label,
+.event_description label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #444;
+}
+ 
+.event_details input,
+.event_details select,
+.event_description input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+ 
+.event_details input:focus,
+.event_details select:focus,
+.event_description input:focus {
+    outline: none;
+    border-color: #045694;
+}
+ 
+.publish_button {
+    margin-top: 20px;
+    text-align: right;
+}
+ 
+.publish_button input[type="submit"] {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+ 
+.publish_button input[type="submit"]:hover {
+    background-color: #034a7e;
 }
 
-/* movil */
-@media screen and (max-width: 480px) {
-    .menu_sport_events h4 {
-        font-size: 1rem;
-    }
+.event_details input[type="file"] {
+    padding: 6px 12px;
+    border: 1px dashed #045694;
+    background-color: #f0f7ff;
+    cursor: pointer;
 }
