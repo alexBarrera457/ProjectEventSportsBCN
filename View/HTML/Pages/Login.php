@@ -23,6 +23,7 @@ unset($_SESSION['login_error']);
       <div class="boton_header">
         
           <a href="../../../View/HTML/Pages/SingUp.php"><input type="button" value="Registrarse" alt="Registrarse"/> </a>
+          <a href="../../../View/HTML/Pages/SingUpManager.php"><input type="button" value="Registrarse como manager"></a>
        
       </div>
     </div>
