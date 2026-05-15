@@ -67,13 +67,13 @@ session_start();
         </div>
  
         <div class="football_label">
-            <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4></a>
-            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol">          
+            <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4>
+            <img src="../../Assets/Futbol.jpeg" alt="Foto fútbol"></a>        
         </div>
  
         <div class="basketball_label">
-            <a href="Basketball.php"><h4>Baloncesto</h4></a>
-            <img src="../../Assets/Baloncesto.jpeg" alt="Foto baloncesto">
+            <a href="Basketball.php"><h4>Baloncesto</h4>
+            <img src="../../Assets/Baloncesto.jpeg" alt="Foto baloncesto"></a>
         </div>
  
     </div>

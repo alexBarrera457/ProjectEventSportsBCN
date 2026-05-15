@@ -4,6 +4,11 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: Login.php');     
   exit();
 }
+
+if ($_SESSION['rol'] !== 'manager') {
+    header('Location: HomeMenu.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +75,13 @@ if (!isset($_SESSION['user_id'])) {
         </div>
  
         <div class="football_label">
-            <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4></a>
-            <img src="../../Assets/Futbol.jpeg">          
+            <a href="../../HTML/Pages/Football.php"><h4>Fútbol</h4>
+            <img src="../../Assets/Futbol.jpeg"></a>          
         </div>
  
         <div class="basketball_label">
-            <a href="Basketball.php"><h4>Baloncesto</h4></a>
-            <img src="../../Assets/Baloncesto.jpeg">
+            <a href="Basketball.php"><h4>Baloncesto</h4>
+            <img src="../../Assets/Baloncesto.jpeg"></a>
         </div>
  
     </div>
