@@ -61,9 +61,9 @@ if (!$ev) {
     <a href="javascript:history.back()" class="btn_volver">← Volver</a>
 
     <div class="event_detail_card">
-        <img src="/HTML/Controler/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
+        <img src="/HTML/View/Assets/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
              alt="<?= htmlspecialchars($ev['nombre']) ?>"
-             onerror="this.src='/HTML/Assets/SportsIcon.png'">
+             onerror="this.src='/HTML/View/Assets/SportsIcon.png'">
 
         <div class="event_detail_info">
             <h1><?= htmlspecialchars($ev['nombre']) ?></h1>
