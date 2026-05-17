@@ -88,9 +88,9 @@ $eventos    = $controller->getMyEvents($_SESSION['user_id']);
                     data-fecha="<?= htmlspecialchars($ev['fecha']) ?>">
 
                     <a href="../Pages/EventDetail.php?id=<?= (int)$ev['id_evento'] ?>">
-                    <img src="/HTML/Controler/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
+                    <img src="/HTML/View/Assets/eventImages/<?= htmlspecialchars($ev['foto']) ?>"
                     alt="<?= htmlspecialchars($ev['titulo']) ?>"
-                    onerror="this.src='/HTML/Assets/SportsIcon.png'">
+                    onerror="this.src='/HTML/View/Assets/SportsIcon.png'">
 
                 <div class="event_card_info">
                     <h4><?= htmlspecialchars($ev['titulo']) ?></h4>
@@ -111,6 +111,8 @@ $eventos    = $controller->getMyEvents($_SESSION['user_id']);
                     <form method="POST" action="../../../Controler/EventController.php"
                           onsubmit="return confirm('¿Eliminar este evento?')">
                         <input type="hidden" name="id_evento" value="<?= (int)$ev['id_evento'] ?>">
+                        <a href="../Pages/EditEvent.php?id=<?= (int)$ev['id_evento'] ?>">
+                        <button type="button" class="btn_editar">✎ Editar</button></a>
                         <button type="submit" name="delete_event" class="btn_eliminar">Eliminar</button>
                     </form>
                 </div>

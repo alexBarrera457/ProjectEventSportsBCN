@@ -377,6 +377,22 @@ body, html {
     background-color: #96281b;
 }
 
+.btn_editar {
+    background-color: #045694;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.btn_editar:hover {
+    background-color: #033d6a;
+}
+
 /* RESPONSIVE */
 
 @media screen and (max-width: 768px) {

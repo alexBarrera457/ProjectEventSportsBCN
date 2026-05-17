@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST["create_event"])) {
         $user->createEvent();
     }
-    /*if (isset($_POST["update_event"])) {
+    if (isset($_POST["update_event"])) {
         $user->updateEvent();
     }
-    if (isset($_POST["delete_event"])) {
+    /*if (isset($_POST["delete_event"])) {
         $user->deleteEvent();
     }*/
 }
@@ -122,11 +122,76 @@ class EventController {
 
 
 
-   /* public function updateEvent() {
+    public function updateEvent() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'manager') {
+        header('Location: ../View/HTML/Pages/Login.php');
+        exit();
+    }
+
+    $id_evento   = (int)($_POST['id_evento'] ?? 0);
+    $nombre      = trim($_POST['nombre']         ?? '');
+    $deporte     = trim($_POST['deporte']        ?? '');
+    $descripcion = trim($_POST['descripcion']    ?? '');
+    $fecha       = trim($_POST['fecha']          ?? '');
+    $hora        = trim($_POST['hora']           ?? '');
+    $plazas      = (int)($_POST['plazas_totales'] ?? 0);
+    $calle       = trim($_POST['calle']          ?? '');
+    $numero      = trim($_POST['numero']         ?? '');
+    $cp          = trim($_POST['cp']             ?? '');
+    $google_maps = trim($_POST['google_maps']    ?? '');
+
+    // Verificar que el evento pertenece al manager
+    $stmtCheck = $this->conn->prepare("SELECT id FROM eventos WHERE id = ? AND manager_id = ?");
+    $stmtCheck->execute([$id_evento, $_SESSION['user_id']]);
+    if (!$stmtCheck->fetch()) {
+        $_SESSION['event_error'] = "No tienes permiso para editar este evento.";
+        header('Location: ../View/HTML/Pages/MyEvents.php');
+        exit();
+    }
+
+    // Campos obligatorios
+    if (empty($nombre) || empty($deporte) || empty($fecha) || empty($hora) || empty($plazas) || empty($calle) || empty($numero) || empty($cp)) {
+        $_SESSION['event_error'] = "Por favor, completa todos los campos obligatorios.";
+        header("Location: ../View/HTML/Pages/EditEvent.php?id=$id_evento");
+        exit();
+    }
+
+    // Subida de nueva foto
+    $foto = null;
+    if (!empty($_FILES['foto']['tmp_name'])) {
+        $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $mime    = mime_content_type($_FILES['foto']['tmp_name']);
+
+        if (!in_array($mime, $allowed)) {
+            $_SESSION['event_error'] = "La foto debe ser una imagen (JPG, PNG, GIF o WEBP).";
+            header("Location: ../View/HTML/Pages/EditEvent.php?id=$id_evento");
+            exit();
+        }
+
+        $ext      = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+        $filename = 'event_' . $id_evento . '_' . time() . '.' . $ext;
+        move_uploaded_file($_FILES['foto']['tmp_name'], "../View/Assets/eventImages/" . $filename);
+        $foto = $filename;
+    }
+
+    // UPDATE con o sin foto
+    if ($foto) {
+        $sql  = "UPDATE eventos SET nombre=?, deporte=?, descripcion=?, fecha=?, hora=?, plazas_totales=?, calle=?, numero=?, cp=?, google_maps=?, foto=? WHERE id=? AND manager_id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$nombre, $deporte, $descripcion, $fecha, $hora, $plazas, $calle, $numero, $cp, $google_maps, $foto, $id_evento, $_SESSION['user_id']]);
+    } else {
+        $sql  = "UPDATE eventos SET nombre=?, deporte=?, descripcion=?, fecha=?, hora=?, plazas_totales=?, calle=?, numero=?, cp=?, google_maps=? WHERE id=? AND manager_id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$nombre, $deporte, $descripcion, $fecha, $hora, $plazas, $calle, $numero, $cp, $google_maps, $id_evento, $_SESSION['user_id']]);
+    }
+
+    $_SESSION['event_success'] = "Evento actualizado correctamente.";
+    header('Location: ../View/HTML/Pages/MyEvents.php');
+    exit();
         
     }
 
-    public function deleteEvent() {
+    /*public function deleteEvent() {
         
     }*/
 }
